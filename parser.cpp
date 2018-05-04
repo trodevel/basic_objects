@@ -19,18 +19,19 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 */
 
-// $Revision: 9034 $ $Date:: 2018-05-03 #$ $Author: serge $
+// $Revision: 9058 $ $Date:: 2018-05-04 #$ $Author: serge $
 
 #include "parser.h"             // self
 
 #include "generic_protocol/request_parser.h" // generic_protocol::Parser::get_value_or_throw()
+#include "basic_parser/get_value.h"             // basic_parser::get_value_or_throw
 #include "validator.h"      // Validator
 
 namespace basic_objects
 {
 
-using generic_protocol::get_value_or_throw;
-using generic_protocol::get_value_or_throw_uint32;
+using basic_parser::get_value_or_throw;
+using basic_parser::get_value_or_throw_uint32;
 
 TimePoint24 * Parser::to_TimePoint24( TimePoint24 * res, const std::string & prefix, const generic_request::Request & r )
 {
