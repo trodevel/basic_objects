@@ -19,7 +19,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 */
 
-// $Revision: 9032 $ $Date:: 2018-05-03 #$ $Author: serge $
+// $Revision: 9129 $ $Date:: 2018-05-09 #$ $Author: serge $
 
 #ifndef LIB_BASIC_OBJECTS__BASIC_OBJECTS_H
 #define LIB_BASIC_OBJECTS__BASIC_OBJECTS_H
@@ -77,6 +77,16 @@ struct TimeRange
 
     uint32_t        from;   // epoch (seconds)
     uint32_t        to;     // epoch (seconds)
+};
+
+struct LocalTimeRange
+{
+    LocalTimeRange()
+    {
+    }
+
+    LocalTime       from;
+    LocalTime       to;
 };
 
 struct Date

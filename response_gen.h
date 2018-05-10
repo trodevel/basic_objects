@@ -19,7 +19,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 */
 
-// $Revision: 9068 $ $Date:: 2018-05-04 #$ $Author: serge $
+// $Revision: 9142 $ $Date:: 2018-05-09 #$ $Author: serge $
 
 #ifndef LIB_BASIC_OBJECTS__RESPONSE_GEN_H
 #define LIB_BASIC_OBJECTS__RESPONSE_GEN_H
@@ -28,6 +28,25 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 namespace basic_objects
 {
+
+inline LocalTime * init_LocalTime(
+        LocalTime       * res,
+        uint32_t        year,
+        uint8_t         month,
+        uint8_t         day,
+        uint32_t        hh,
+        uint8_t         mm,
+        uint8_t         ss )
+{
+    res->year       = year;
+    res->month      = month;
+    res->day        = day;
+    res->hh         = hh;
+    res->mm         = mm;
+    res->ss         = ss;
+
+    return res;
+}
 
 inline Date * init_Date(
         Date            * res,

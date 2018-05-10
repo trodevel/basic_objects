@@ -19,7 +19,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 */
 
-// $Revision: 9058 $ $Date:: 2018-05-04 #$ $Author: serge $
+// $Revision: 9131 $ $Date:: 2018-05-09 #$ $Author: serge $
 
 #include "parser.h"             // self
 
@@ -91,6 +91,12 @@ void Parser::to_TimeRange( TimeRange * res, const std::string & prefix, const ge
 {
     r.get_value_converted( prefix + "_TR_FROM",    res->from );
     r.get_value_converted( prefix + "_TR_TO",      res->to );
+}
+
+void Parser::to_LocalTimeRange( LocalTimeRange * res, const std::string & prefix, const generic_request::Request & r )
+{
+    to_LocalTime( & res->from,  prefix + "_TR_FROM",    r );
+    to_LocalTime( & res->to,    prefix + "_TR_TO",      r );
 }
 
 Date * Parser::to_Date( Date * res, const std::string & key, const generic_request::Request & r )

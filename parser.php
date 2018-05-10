@@ -21,7 +21,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 */
 
-// $Revision: 9089 $ $Date:: 2018-05-04 #$ $Author: serge $
+// $Revision: 9134 $ $Date:: 2018-05-09 #$ $Author: serge $
 
 namespace basic_objects;
 
@@ -78,6 +78,16 @@ function parse_LocalTime( & $csv_arr, & $offset )
     $offset++;
 
     $res = new LocalTime( $year, $month, $day, $hh, $mm, $ss );
+
+    return $res;
+}
+
+function parse_LocalTimeRange( & $csv_arr, & $offset )
+{
+    $res = new LocalTimeRange;
+
+    $res->from = parse_LocalTime( $csv_arr, $offset );
+    $res->to   = parse_LocalTime( $csv_arr, $offset );
 
     return $res;
 }

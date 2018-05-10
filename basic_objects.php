@@ -21,7 +21,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 */
 
-// $Revision: 9090 $ $Date:: 2018-05-04 #$ $Author: serge $
+// $Revision: 9133 $ $Date:: 2018-05-09 #$ $Author: serge $
 
 namespace basic_objects;
 
@@ -150,6 +150,24 @@ class TimeRange
             $prefix . "_TR_TO"   => $this->to );
 
         return \generic_protocol\assemble_request( $res );
+    }
+}
+
+class LocalTimeRange
+{
+    public             $from;   // LocalTime
+    public             $to;     // LocalTime
+
+    function __construct( $from, $to )
+    {
+        $this->from     = $from;
+        $this->to       = $to;
+    }
+
+    public function to_generic_request( $prefix )
+    {
+        return $this->from->to_generic_request( $prefix . "_TR_FROM" ) .
+            $this->from->to_generic_request( $prefix . "_TR_TO" );
     }
 }
 

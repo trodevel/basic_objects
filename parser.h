@@ -19,7 +19,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 */
 
-// $Revision: 9058 $ $Date:: 2018-05-04 #$ $Author: serge $
+// $Revision: 9131 $ $Date:: 2018-05-09 #$ $Author: serge $
 
 #include <stdexcept>            // std::runtime_error
 
@@ -38,6 +38,7 @@ public:
 
 public:
     static void                         to_TimeRange( TimeRange * res, const std::string & prefix, const generic_request::Request & r );
+    static void                         to_LocalTimeRange( LocalTimeRange * res, const std::string & prefix, const generic_request::Request & r );
     static LocalTime *                  to_LocalTime( LocalTime * res, const std::string & prefix, const generic_request::Request & r );
     static TimePoint24 *                to_TimePoint24( TimePoint24 * res, const std::string & prefix, const generic_request::Request & r );
     static TimeWindow *                 to_TimeWindow( TimeWindow * res, const std::string & prefix, const generic_request::Request & r );

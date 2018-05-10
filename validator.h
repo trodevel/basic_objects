@@ -19,7 +19,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 */
 
-// $Revision: 9032 $ $Date:: 2018-05-03 #$ $Author: serge $
+// $Revision: 9132 $ $Date:: 2018-05-09 #$ $Author: serge $
 
 #include "basic_objects.h"      // Date...
 
@@ -31,6 +31,7 @@ class Validator
 public:
     static bool validate( const Weekdays * r );
     static bool validate( const TimeRange * r );
+    static bool validate( const LocalTimeRange * r );
     static bool validate( const Date * r );
     static bool validate( const LocalTime * r );
     static bool validate( const TimePoint24 * r );
