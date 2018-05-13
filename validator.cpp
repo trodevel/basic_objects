@@ -19,7 +19,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 */
 
-// $Revision: 9144 $ $Date:: 2018-05-09 #$ $Author: serge $
+// $Revision: 9145 $ $Date:: 2018-05-11 #$ $Author: serge $
 
 
 #include "validator.h"          // self
@@ -57,14 +57,14 @@ bool Validator::validate( const LocalTimeRange * r )
     auto from   = to_val( r->from );
     auto to     = to_val( r->to );
 
-    if( ( from > 0 ) && ( to > 0 ) && ( from > to ) )
-        return false;
-
     if( from > 0 )
         validate( & r->from );
 
     if( to > 0 )
         validate( & r->to );
+
+    if( ( from > 0 ) && ( to > 0 ) && ( from > to ) )
+        return false;
 
     return true;
 }
