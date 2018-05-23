@@ -21,7 +21,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 */
 
-// $Revision: 9134 $ $Date:: 2018-05-09 #$ $Author: serge $
+// $Revision: 9253 $ $Date:: 2018-05-24 #$ $Author: serge $
 
 namespace basic_objects;
 
@@ -64,16 +64,27 @@ function parse_Weekdays( & $csv_arr, $offset )
 function parse_LocalTime( & $csv_arr, & $offset )
 {
     $v = intval( $csv_arr[ $offset + 0 ] );
+    $str = $csv_arr[ $offset + 0 ];
 
     // 201805041739
     // 10000000000 + r.m * 100000000 + r.d * 1000000 + r.hh * 10000 + r.mm * 100 + r.ss;
 
-    $year   = $v / 10000000000;  $v %= 10000000000;
-    $month  = $v / 100000000;    $v %= 100000000;
-    $day    = $v / 1000000;      $v %= 1000000;
-    $hh     = $v / 10000;        $v %= 10000;
-    $mm     = $v / 100;          $v %= 100;
-    $ss     = $v;
+    $dt = intval( substr( $str, 0, 8 ) );
+    $tm = intval( substr( $str, 8 ) );
+
+    //echo "str = $str\n";
+    //echo "dt = $dt\n";
+    //echo "tm = $tm\n";
+    //exit;
+
+    $year   = intval( $dt / 10000 );    $dt %= 10000;
+    $month  = intval( $dt / 100 );      $dt %= 100;
+    $day    = intval( $dt );
+
+
+    $hh     = intval( $tm / 10000 );    $tm %= 10000;
+    $mm     = intval( $tm / 100 );      $tm %= 100;
+    $ss     = intval( $tm );
 
     $offset++;
 
