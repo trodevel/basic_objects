@@ -1,6 +1,6 @@
 /*
 
-Flattener.
+Converter.
 
 Copyright (C) 2018 Sergey Kolevatov
 
@@ -19,10 +19,10 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 */
 
-// $Revision: 9185 $ $Date:: 2018-05-14 #$ $Author: serge $
+// $Revision: 9286 $ $Date:: 2018-06-05 #$ $Author: serge $
 
-#ifndef LIB_BASIC_OBJECTS__FLATTENER_H
-#define LIB_BASIC_OBJECTS__FLATTENER_H
+#ifndef LIB_BASIC_OBJECTS__CONVERTER_H
+#define LIB_BASIC_OBJECTS__CONVERTER_H
 
 #include "basic_objects.h"      // LocalTime...
 
@@ -31,6 +31,9 @@ namespace basic_objects
 
 uint64_t to_val( const LocalTime & r );
 
+Date        to_Date( const LocalTime & r );
+TimePoint24 to_TimePoint24( const LocalTime & r );
+
 } // namespace basic_objects
 
-#endif // LIB_BASIC_OBJECTS__FLATTENER_H
+#endif // LIB_BASIC_OBJECTS__CONVERTER_H

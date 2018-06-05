@@ -19,7 +19,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 */
 
-// $Revision: 9142 $ $Date:: 2018-05-09 #$ $Author: serge $
+// $Revision: 9195 $ $Date:: 2018-05-15 #$ $Author: serge $
 
 #ifndef LIB_BASIC_OBJECTS__RESPONSE_GEN_H
 #define LIB_BASIC_OBJECTS__RESPONSE_GEN_H

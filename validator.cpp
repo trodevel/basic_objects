@@ -19,13 +19,13 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 */
 
-// $Revision: 9185 $ $Date:: 2018-05-14 #$ $Author: serge $
+// $Revision: 9286 $ $Date:: 2018-06-05 #$ $Author: serge $
 
 
 #include "validator.h"          // self
 
 #include "parser.h"             // MalformedRequest
-#include "flattener.h"          // to_val
+#include "converter.h"          // to_val
 
 namespace basic_objects
 {

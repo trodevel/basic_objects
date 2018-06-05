@@ -19,7 +19,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 */
 
-// $Revision: 9083 $ $Date:: 2018-05-04 #$ $Author: serge $
+// $Revision: 9286 $ $Date:: 2018-06-05 #$ $Author: serge $
 
 #ifndef LIB_BASIC_OBJECTS__CSV_HELPER_H
 #define LIB_BASIC_OBJECTS__CSV_HELPER_H
@@ -49,6 +49,9 @@ public:
 
         return os.str();
     }
+
+    static std::string to_string_YYYYMMDD( const Date & l );
+    static std::string to_string_HHMM( const TimePoint24 & l );
 };
 
 inline std::ostream& operator<<( std::ostream& os, const TimePoint24 & l )

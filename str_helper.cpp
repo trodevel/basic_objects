@@ -19,7 +19,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 */
 
-// $Revision: 9063 $ $Date:: 2018-05-04 #$ $Author: serge $
+// $Revision: 9286 $ $Date:: 2018-06-05 #$ $Author: serge $
 
 #include "str_helper.h"             // self
 
@@ -78,6 +78,26 @@ std::ostream & StrHelper::write( std::ostream & os, const Weekdays & l )
     }
 
     return os;
+}
+
+std::string StrHelper::to_string_YYYYMMDD( const Date & l )
+{
+    std::ostringstream os;
+
+    os << std::setfill( '0' );
+
+    os << std::setw( 4 ) << (unsigned) l.year << std::setw( 2 ) << (unsigned) l.month << std::setw( 2 ) << (unsigned) l.day;
+
+    return os.str();
+}
+
+std::string StrHelper::to_string_HHMM( const TimePoint24 & l )
+{
+    std::ostringstream os;
+
+    os << std::setfill( '0' ) << std::setw( 2 ) << (unsigned) l.hh << std::setfill( '0' ) << std::setw( 2 ) << (unsigned) l.mm;
+
+    return os.str();
 }
 
 } // namespace basic_objects
