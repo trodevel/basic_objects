@@ -21,7 +21,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 */
 
-// $Revision: 9195 $ $Date:: 2018-05-15 #$ $Author: serge $
+// $Revision: 9883 $ $Date:: 2018-10-18 #$ $Author: serge $
 
 namespace basic_objects;
 
@@ -194,6 +194,24 @@ class Date
         $res = array(
                 $key_name  => $this->get_encoded() );
 
+        return \generic_protocol\assemble_request( $res );
+    }
+};
+
+class Email
+{
+    public          $email;  // email
+    
+    function __construct( $email )
+    {
+        $this->email    = $email;
+    }
+    
+    public function to_generic_request( $key_name )
+    {
+        $res = array(
+            $key_name . ":X"  => str2hex( $this->email ) );
+        
         return \generic_protocol\assemble_request( $res );
     }
 };
