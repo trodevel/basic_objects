@@ -19,7 +19,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 */
 
-// $Revision: 9286 $ $Date:: 2018-06-05 #$ $Author: serge $
+// $Revision: 9895 $ $Date:: 2018-10-19 #$ $Author: serge $
 
 #ifndef LIB_BASIC_OBJECTS__CSV_HELPER_H
 #define LIB_BASIC_OBJECTS__CSV_HELPER_H
@@ -39,6 +39,7 @@ public:
     static std::ostream & write( std::ostream & os, const TimeWindow & l );
     static std::ostream & write( std::ostream & os, const LocalTime & l );
     static std::ostream & write( std::ostream & os, const Weekdays & l );
+    static std::ostream & write( std::ostream & os, const Email & l );
 
     template<class T>
     static std::string to_string( const T & l )
@@ -74,6 +75,10 @@ inline std::ostream& operator<<( std::ostream& os, const Weekdays & l )
     return StrHelper::write( os, l );
 }
 
+inline std::ostream& operator<<( std::ostream& os, const Email & l )
+{
+    return StrHelper::write( os, l );
+}
 
 } // namespace basic_objects
 

@@ -19,7 +19,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 */
 
-// $Revision: 9286 $ $Date:: 2018-06-05 #$ $Author: serge $
+// $Revision: 9895 $ $Date:: 2018-10-19 #$ $Author: serge $
 
 #include "str_helper.h"             // self
 
@@ -98,6 +98,13 @@ std::string StrHelper::to_string_HHMM( const TimePoint24 & l )
     os << std::setfill( '0' ) << std::setw( 2 ) << (unsigned) l.hh << std::setfill( '0' ) << std::setw( 2 ) << (unsigned) l.mm;
 
     return os.str();
+}
+
+std::ostream & StrHelper::write( std::ostream & os, const Email & l )
+{
+    os << l.email;
+
+    return os;
 }
 
 } // namespace basic_objects

@@ -19,7 +19,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 */
 
-// $Revision: 9195 $ $Date:: 2018-05-15 #$ $Author: serge $
+// $Revision: 9895 $ $Date:: 2018-10-19 #$ $Author: serge $
 
 #ifndef LIB_BASIC_OBJECTS__CSV_HELPER_H
 #define LIB_BASIC_OBJECTS__CSV_HELPER_H
@@ -39,6 +39,7 @@ public:
     static std::ostream & write( std::ostream & os, const LocalTime & r );
     static std::ostream & write( std::ostream & os, const LocalTimeRange & r );
     static std::ostream & write( std::ostream & os, const Weekdays & r );
+    static std::ostream & write( std::ostream & os, const Email & r );
 };
 
 } // namespace basic_objects

@@ -19,12 +19,13 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 */
 
-// $Revision: 9195 $ $Date:: 2018-05-15 #$ $Author: serge $
+// $Revision: 9895 $ $Date:: 2018-10-19 #$ $Author: serge $
 
 #ifndef LIB_BASIC_OBJECTS__BASIC_OBJECTS_H
 #define LIB_BASIC_OBJECTS__BASIC_OBJECTS_H
 
 #include <cstdint>             // uint32_t
+#include <string>               // std::string
 
 namespace basic_objects
 {
@@ -94,6 +95,11 @@ struct Date
     uint32_t        year;
     uint8_t         month;
     uint8_t         day;
+};
+
+struct Email
+{
+    std::string     email;
 };
 
 } // namespace basic_objects

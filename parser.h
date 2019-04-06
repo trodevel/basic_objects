@@ -19,7 +19,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 */
 
-// $Revision: 9195 $ $Date:: 2018-05-15 #$ $Author: serge $
+// $Revision: 9895 $ $Date:: 2018-10-19 #$ $Author: serge $
 
 #include <stdexcept>            // std::runtime_error
 
@@ -44,6 +44,7 @@ public:
     static TimeWindow *                 to_TimeWindow( TimeWindow * res, const std::string & prefix, const generic_request::Request & r );
     static void                         to_Weekdays( Weekdays & res, const generic_request::Request & r );
     static Date *                       to_Date( Date * res, const std::string & key, const generic_request::Request & r );
+    static Email *                      to_Email( Email * res, const std::string & key, const generic_request::Request & r );
 };
 
 } // namespace basic_objects

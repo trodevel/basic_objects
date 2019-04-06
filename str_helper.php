@@ -21,7 +21,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 */
 
-// $Revision: 9091 $ $Date:: 2018-05-04 #$ $Author: serge $
+// $Revision: 9895 $ $Date:: 2018-10-19 #$ $Author: serge $
 
 namespace basic_objects;
 
@@ -53,6 +53,11 @@ function to_html_Weekdays( & $obj )
 function to_string_Date( & $obj )
 {
     return sprintf( "%04d-%02d-%02d", $obj->year, $obj->month, $obj->day );
+}
+
+function to_string_Email( & $obj )
+{
+    return $obj->email;
 }
 
 ?>

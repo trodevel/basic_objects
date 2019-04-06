@@ -19,7 +19,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 */
 
-// $Revision: 9195 $ $Date:: 2018-05-15 #$ $Author: serge $
+// $Revision: 9895 $ $Date:: 2018-10-19 #$ $Author: serge $
 
 #include "csv_helper.h"         // self
 
@@ -62,6 +62,11 @@ std::ostream & CsvHelper::write( std::ostream & os, const Weekdays & r )
 std::ostream & CsvHelper::write( std::ostream & os, const Date & r )
 {
     return utils::CsvHelper::write( os, r.year * 10000 + r.month * 100 + r.day );
+}
+
+std::ostream & CsvHelper::write( std::ostream & os, const Email & r )
+{
+    return utils::CsvHelper::write( os, r.email );
 }
 
 } // namespace basic_objects

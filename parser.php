@@ -21,7 +21,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 */
 
-// $Revision: 9253 $ $Date:: 2018-05-24 #$ $Author: serge $
+// $Revision: 9895 $ $Date:: 2018-10-19 #$ $Author: serge $
 
 namespace basic_objects;
 
@@ -114,6 +114,17 @@ function parse_Date( & $csv_arr, $offset )
     $day   = intval( $v % 100 );
 
     return new Date( $year, $month, $day );
+}
+
+function parse_Email( & $csv_arr, & $offset )
+{
+    $res = new Email;
+
+    $res->email = $csv_arr[ $offset + 0 ];
+
+    $offset++;
+
+    return $res;
 }
 
 ?>

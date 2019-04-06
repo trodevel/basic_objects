@@ -19,7 +19,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 */
 
-// $Revision: 9195 $ $Date:: 2018-05-15 #$ $Author: serge $
+// $Revision: 9895 $ $Date:: 2018-10-19 #$ $Author: serge $
 
 #include "parser.h"             // self
 
@@ -84,7 +84,7 @@ void Parser::to_Weekdays( Weekdays & res, const generic_request::Request & r )
 
     r.get_value_converted( "WEEKDAYS_MASK", res.mask );
 
-    Validator::validate( & res );
+    Validator::validate( res );
 }
 
 void Parser::to_TimeRange( TimeRange * res, const std::string & prefix, const generic_request::Request & r )
@@ -114,7 +114,16 @@ Date * Parser::to_Date( Date * res, const std::string & key, const generic_reque
         res->day    = birthday % 100;
     }
 
-    Validator::validate( res );
+    Validator::validate( * res );
+
+    return res;
+}
+
+Email * Parser::to_Email( Email * res, const std::string & key, const generic_request::Request & r )
+{
+    res->email.clear();
+
+    r.get_value( key, res->email );
 
     return res;
 }

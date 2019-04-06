@@ -19,7 +19,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 */
 
-// $Revision: 9195 $ $Date:: 2018-05-15 #$ $Author: serge $
+// $Revision: 9895 $ $Date:: 2018-10-19 #$ $Author: serge $
 
 #ifndef LIB_BASIC_OBJECTS__RESPONSE_GEN_H
 #define LIB_BASIC_OBJECTS__RESPONSE_GEN_H
@@ -57,6 +57,15 @@ inline Date * init_Date(
     res->year       = year;
     res->month      = month;
     res->day        = day;
+
+    return res;
+}
+
+inline Email * init_Email(
+        Email               * res,
+        const std::string   & email )
+{
+    res->email  = email;
 
     return res;
 }
