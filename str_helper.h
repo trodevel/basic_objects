@@ -19,14 +19,14 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 */
 
-// $Revision: 9895 $ $Date:: 2018-10-19 #$ $Author: serge $
+// $Revision: 12692 $ $Date:: 2020-02-03 #$ $Author: serge $
 
 #ifndef LIB_BASIC_OBJECTS__CSV_HELPER_H
 #define LIB_BASIC_OBJECTS__CSV_HELPER_H
 
 #include <sstream>              // std::ostream
 
-#include "basic_objects.h"      // LocalTime
+#include "protocol.h"      // LocalTime
 
 namespace basic_objects
 {

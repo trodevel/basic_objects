@@ -19,7 +19,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 */
 
-// $Revision: 9895 $ $Date:: 2018-10-19 #$ $Author: serge $
+// $Revision: 12692 $ $Date:: 2020-02-03 #$ $Author: serge $
 
 #ifndef LIB_BASIC_OBJECTS__BASIC_OBJECTS_H
 #define LIB_BASIC_OBJECTS__BASIC_OBJECTS_H
