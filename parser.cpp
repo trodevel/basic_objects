@@ -19,7 +19,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 */
 
-// $Revision: 11041 $ $Date:: 2019-05-03 #$ $Author: serge $
+// $Revision: 12727 $ $Date:: 2020-02-15 #$ $Author: serge $
 
 #include "parser.h"             // self
 
@@ -47,8 +47,8 @@ TimePoint24 * Parser::to_TimePoint24( TimePoint24 * res, const std::string & pre
 
 TimeWindow * Parser::to_TimeWindow( TimeWindow * res, const std::string & prefix, const generic_request::Request & r )
 {
-    to_TimePoint24( & res->from, prefix + "_FROM", r );
-    to_TimePoint24( & res->to, prefix + "_TO", r );
+    to_TimePoint24( & res->from, prefix + ".FROM", r );
+    to_TimePoint24( & res->to, prefix + ".TO", r );
 
     return res;
 }
@@ -71,7 +71,7 @@ LocalTime *  Parser::to_LocalTime( LocalTime * res, const std::string & prefix, 
     return res;
 }
 
-void Parser::to_Weekdays( Weekdays & res, const generic_request::Request & r )
+void Parser::to_Weekdays( Weekdays & res, const std::string & prefix, const generic_request::Request & r )
 {
     res.mask   =
             Weekdays::weekdays_e::MO +
@@ -82,21 +82,21 @@ void Parser::to_Weekdays( Weekdays & res, const generic_request::Request & r )
             Weekdays::weekdays_e::SA +
             Weekdays::weekdays_e::SU;
 
-    r.get_value_converted( "WEEKDAYS_MASK", res.mask );
+    r.get_value_converted( prefix + ".MASK", res.mask );
 
     Validator::validate( res );
 }
 
 void Parser::to_TimeRange( TimeRange * res, const std::string & prefix, const generic_request::Request & r )
 {
-    r.get_value_converted( prefix + "_TR_FROM",    res->from );
-    r.get_value_converted( prefix + "_TR_TO",      res->to );
+    r.get_value_converted( prefix + ".FROM",    res->from );
+    r.get_value_converted( prefix + ".TO",      res->to );
 }
 
 void Parser::to_LocalTimeRange( LocalTimeRange * res, const std::string & prefix, const generic_request::Request & r )
 {
-    to_LocalTime( & res->from,  prefix + "_TR_FROM",    r );
-    to_LocalTime( & res->to,    prefix + "_TR_TO",      r );
+    to_LocalTime( & res->from,  prefix + ".FROM",    r );
+    to_LocalTime( & res->to,    prefix + ".TO",      r );
 }
 
 Date * Parser::to_Date( Date * res, const std::string & key, const generic_request::Request & r )

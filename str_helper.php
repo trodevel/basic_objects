@@ -21,11 +21,11 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 */
 
-// $Revision: 11428 $ $Date:: 2019-05-15 #$ $Author: serge $
+// $Revision: 12728 $ $Date:: 2020-02-15 #$ $Author: serge $
 
 namespace basic_objects;
 
-require_once 'basic_objects.php';
+require_once 'protocol.php';
 require_once __DIR__.'/../php_snippets/html_elems.php';      // get_html_table_row_header
 
 function to_string_array( & $obj )

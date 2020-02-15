@@ -19,7 +19,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 */
 
-// $Revision: 12692 $ $Date:: 2020-02-03 #$ $Author: serge $
+// $Revision: 12726 $ $Date:: 2020-02-15 #$ $Author: serge $
 
 #include <stdexcept>            // std::runtime_error
 
@@ -42,7 +42,7 @@ public:
     static LocalTime *                  to_LocalTime( LocalTime * res, const std::string & prefix, const generic_request::Request & r );
     static TimePoint24 *                to_TimePoint24( TimePoint24 * res, const std::string & prefix, const generic_request::Request & r );
     static TimeWindow *                 to_TimeWindow( TimeWindow * res, const std::string & prefix, const generic_request::Request & r );
-    static void                         to_Weekdays( Weekdays & res, const generic_request::Request & r );
+    static void                         to_Weekdays( Weekdays & res, const std::string & prefix, const generic_request::Request & r );
     static Date *                       to_Date( Date * res, const std::string & key, const generic_request::Request & r );
     static Email *                      to_Email( Email * res, const std::string & key, const generic_request::Request & r );
 };

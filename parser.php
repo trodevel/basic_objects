@@ -21,12 +21,12 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 */
 
-// $Revision: 9895 $ $Date:: 2018-10-19 #$ $Author: serge $
+// $Revision: 12728 $ $Date:: 2020-02-15 #$ $Author: serge $
 
 namespace basic_objects;
 
 require_once __DIR__.'/../basic_parser/parser.php';    // basic_parser\parse_int()
-require_once 'basic_objects.php';
+require_once 'protocol.php';
 
 function parse_TimePoint24( & $csv_arr, $offset )
 {

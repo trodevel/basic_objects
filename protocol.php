@@ -21,7 +21,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 */
 
-// $Revision: 12692 $ $Date:: 2020-02-03 #$ $Author: serge $
+// $Revision: 12727 $ $Date:: 2020-02-15 #$ $Author: serge $
 
 namespace basic_objects;
 
@@ -64,8 +64,8 @@ class TimeWindow
     public function to_generic_request( $prefix )
     {
         return
-            $this->from->to_generic_request( $prefix . "_FROM" ) .
-            $this->to->to_generic_request(   $prefix . "_TO" );
+            $this->from->to_generic_request( $prefix . ".FROM" ) .
+            $this->to->to_generic_request(   $prefix . ".TO" );
     }
 }
 
@@ -98,7 +98,7 @@ class LocalTime
     {
         $res = array(
             $key_name  => $this->get_encoded() );
-        
+
         return \generic_protocol\assemble_request( $res );
     }
 };
@@ -122,10 +122,10 @@ class Weekdays
         self::MO + self::TU + self::WE + self::TH + self::FR + self::SA + self::SU;
     }
 
-    public function to_generic_request()
+    public function to_generic_request( $prefix )
     {
         $res = array(
-                "WEEKDAYS_MASK" => $this->mask
+                $prefix . ".MASK" => $this->mask
             );
 
         return \generic_protocol\assemble_request( $res );
@@ -146,8 +146,8 @@ class TimeRange
     public function to_generic_request( $prefix )
     {
         $res = array(
-            $prefix . "_TR_FROM" => $this->from,
-            $prefix . "_TR_TO"   => $this->to );
+            $prefix . ".FROM" => $this->from,
+            $prefix . ".TO"   => $this->to );
 
         return \generic_protocol\assemble_request( $res );
     }
@@ -166,8 +166,8 @@ class LocalTimeRange
 
     public function to_generic_request( $prefix )
     {
-        return $this->from->to_generic_request( $prefix . "_TR_FROM" ) .
-            $this->to->to_generic_request( $prefix . "_TR_TO" );
+        return $this->from->to_generic_request( $prefix . ".FROM" ) .
+            $this->to->to_generic_request( $prefix . ".TO" );
     }
 }
 
