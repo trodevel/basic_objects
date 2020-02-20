@@ -19,7 +19,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 */
 
-// $Revision: 9895 $ $Date:: 2018-10-19 #$ $Author: serge $
+// $Revision: 12772 $ $Date:: 2020-02-19 #$ $Author: serge $
 
 #include "str_helper.h"             // self
 
@@ -52,6 +52,15 @@ std::ostream & StrHelper::write( std::ostream & os, const LocalTime & l )
             << std::setfill( '0' ) << std::setw( 2 ) << (unsigned)l.hh << ":"
             << std::setfill( '0' ) << std::setw( 2 ) << (unsigned)l.mm << ":"
             << std::setfill( '0' ) << std::setw( 2 ) << (unsigned)l.ss;
+
+    return os;
+}
+
+std::ostream & StrHelper::write( std::ostream & os, const LocalTimeRange & l )
+{
+    write( os, l.from );
+    os << "-";
+    write( os, l.to );
 
     return os;
 }
@@ -98,6 +107,15 @@ std::string StrHelper::to_string_HHMM( const TimePoint24 & l )
     os << std::setfill( '0' ) << std::setw( 2 ) << (unsigned) l.hh << std::setfill( '0' ) << std::setw( 2 ) << (unsigned) l.mm;
 
     return os.str();
+}
+
+std::ostream & StrHelper::write( std::ostream & os, const Date & l )
+{
+    os << std::setfill( '0' );
+
+    os << std::setw( 4 ) << (unsigned) l.year << std::setw( 2 ) << (unsigned) l.month << std::setw( 2 ) << (unsigned) l.day;
+
+    return os;
 }
 
 std::ostream & StrHelper::write( std::ostream & os, const Email & l )

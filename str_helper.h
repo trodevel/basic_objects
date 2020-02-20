@@ -19,7 +19,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 */
 
-// $Revision: 12692 $ $Date:: 2020-02-03 #$ $Author: serge $
+// $Revision: 12771 $ $Date:: 2020-02-19 #$ $Author: serge $
 
 #ifndef LIB_BASIC_OBJECTS__CSV_HELPER_H
 #define LIB_BASIC_OBJECTS__CSV_HELPER_H
@@ -38,7 +38,9 @@ public:
     static std::ostream & write( std::ostream & os, const TimePoint24 & l );
     static std::ostream & write( std::ostream & os, const TimeWindow & l );
     static std::ostream & write( std::ostream & os, const LocalTime & l );
+    static std::ostream & write( std::ostream & os, const LocalTimeRange & r );
     static std::ostream & write( std::ostream & os, const Weekdays & l );
+    static std::ostream & write( std::ostream & os, const Date & l );
     static std::ostream & write( std::ostream & os, const Email & l );
 
     template<class T>
