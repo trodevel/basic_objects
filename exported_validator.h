@@ -19,24 +19,25 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 */
 
-// $Revision: 12692 $ $Date:: 2020-02-03 #$ $Author: serge $
+// $Revision: 12795 $ $Date:: 2020-02-26 #$ $Author: serge $
 
 #include "protocol.h"      // Date...
 
-namespace basic_objects
+namespace basic_parser
 {
 
-class Validator
+namespace validator
 {
-public:
-    static bool validate( const Weekdays & r );
-    static bool validate( const TimeRange & r );
-    static bool validate( const LocalTimeRange & r );
-    static bool validate( const Date & r );
-    static bool validate( const LocalTime & r );
-    static bool validate( const TimePoint24 & r );
-    static bool validate( const TimeWindow & r );
-    static bool validate( const Email & r );
-};
 
-} // namespace basic_objects
+bool validate( const basic_objects::Weekdays & r );
+bool validate( const basic_objects::TimeRange & r );
+bool validate( const basic_objects::LocalTimeRange & r );
+bool validate( const basic_objects::Date & r );
+bool validate( const basic_objects::LocalTime & r );
+bool validate( const basic_objects::TimePoint24 & r );
+bool validate( const basic_objects::TimeWindow & r );
+bool validate( const basic_objects::Email & r );
+
+} // namespace validator
+
+} // namespace basic_parser

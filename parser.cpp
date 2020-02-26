@@ -19,13 +19,13 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 */
 
-// $Revision: 12727 $ $Date:: 2020-02-15 #$ $Author: serge $
+// $Revision: 12797 $ $Date:: 2020-02-26 #$ $Author: serge $
 
 #include "parser.h"             // self
 
-#include "generic_protocol/request_parser.h" // generic_protocol::Parser::get_value_or_throw()
-#include "basic_parser/get_value.h"             // basic_parser::get_value_or_throw
-#include "validator.h"      // Validator
+#include "generic_protocol/parser.h" // generic_protocol::Parser::get_value_or_throw()
+#include "basic_parser/exported_parser.h"             // basic_parser::get_value_or_throw
+#include "exported_validator.h"      // Validator
 
 namespace basic_objects
 {
@@ -84,7 +84,7 @@ void Parser::to_Weekdays( Weekdays & res, const std::string & prefix, const gene
 
     r.get_value_converted( prefix + ".MASK", res.mask );
 
-    Validator::validate( res );
+    ::basic_parser::validator::validate( res );
 }
 
 void Parser::to_TimeRange( TimeRange * res, const std::string & prefix, const generic_request::Request & r )
@@ -114,7 +114,7 @@ Date * Parser::to_Date( Date * res, const std::string & key, const generic_reque
         res->day    = birthday % 100;
     }
 
-    Validator::validate( * res );
+    ::basic_parser::validator::validate( * res );
 
     return res;
 }

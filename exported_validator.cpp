@@ -19,20 +19,25 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 */
 
-// $Revision: 11041 $ $Date:: 2019-05-03 #$ $Author: serge $
+// $Revision: 12797 $ $Date:: 2020-02-26 #$ $Author: serge $
 
 
-#include "validator.h"          // self
+#include "exported_validator.h"          // self
 
 #include "utils/regex_match.h"  // utils::regex_match()
 
 #include "parser.h"             // MalformedRequest
 #include "converter.h"          // to_val
 
-namespace basic_objects
+namespace basic_parser
 {
 
-bool Validator::validate( const Weekdays & r )
+namespace validator
+{
+
+using namespace basic_objects;
+
+bool validate( const basic_objects::Weekdays & r )
 {
     if( r.mask <= 0 || r.mask > 127 )
         throw Parser::MalformedRequest( "WEEKDAYS_MASK is invalid" );
@@ -40,7 +45,7 @@ bool Validator::validate( const Weekdays & r )
     return true;
 }
 
-bool Validator::validate( const TimeRange & r )
+bool validate( const basic_objects::TimeRange & r )
 {
     if( ( r.from > 0  ) && ( r.to > 0 ) && ( r.from > r.to ) )
         return false;
@@ -48,7 +53,7 @@ bool Validator::validate( const TimeRange & r )
     return true;
 }
 
-bool Validator::validate( const LocalTimeRange & r )
+bool validate( const basic_objects::LocalTimeRange & r )
 {
     auto from   = to_val( r.from );
     auto to     = to_val( r.to );
@@ -65,7 +70,7 @@ bool Validator::validate( const LocalTimeRange & r )
     return true;
 }
 
-bool Validator::validate( const Date & r )
+bool validate( const basic_objects::Date & r )
 {
     if( r.year == 0 && r.month == 0 && r.day == 0 )
         return true;
@@ -82,7 +87,7 @@ bool Validator::validate( const Date & r )
     return true;
 }
 
-bool Validator::validate( const TimePoint24 & r )
+bool validate( const basic_objects::TimePoint24 & r )
 {
     if( r.hh > 23 )
         throw Parser::MalformedRequest( "TimePoint24: HH > 23" );
@@ -93,7 +98,7 @@ bool Validator::validate( const TimePoint24 & r )
     return true;
 }
 
-bool Validator::validate( const TimeWindow & r )
+bool validate( const basic_objects::TimeWindow & r )
 {
     validate( r.from );
     validate( r.to );
@@ -101,7 +106,7 @@ bool Validator::validate( const TimeWindow & r )
     return true;
 }
 
-bool Validator::validate( const LocalTime & r )
+bool validate( const basic_objects::LocalTime & r )
 {
     if( r.year == 0 )
         throw Parser::MalformedRequest( "LocalTime: year is 0" );
@@ -133,7 +138,7 @@ bool Validator::validate( const LocalTime & r )
     return true;
 }
 
-bool Validator::validate( const Email & r )
+bool validate( const basic_objects::Email & r )
 {
     if( utils::regex_match( r.email, "^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9.\\-]+$" ) == false )
         throw Parser::MalformedRequest( "malformed email" );
@@ -141,4 +146,6 @@ bool Validator::validate( const Email & r )
     return true;
 }
 
-} // namespace basic_objects
+} // namespace validator
+
+} // namespace basic_parser
