@@ -19,7 +19,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 */
 
-// $Revision: 12772 $ $Date:: 2020-02-19 #$ $Author: serge $
+// $Revision: 12977 $ $Date:: 2020-05-07 #$ $Author: serge $
 
 #include "str_helper.h"             // self
 
@@ -28,7 +28,10 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 namespace basic_objects
 {
 
-std::ostream & StrHelper::write( std::ostream & os, const TimePoint24 & l )
+namespace str_helper
+{
+
+std::ostream & write( std::ostream & os, const TimePoint24 & l )
 {
     os << std::setfill( '0' );
 
@@ -37,14 +40,14 @@ std::ostream & StrHelper::write( std::ostream & os, const TimePoint24 & l )
     return os;
 }
 
-std::ostream & StrHelper::write( std::ostream & os, const TimeWindow & l )
+std::ostream & write( std::ostream & os, const TimeWindow & l )
 {
     os << l.from << "-" << l.to;
 
     return os;
 }
 
-std::ostream & StrHelper::write( std::ostream & os, const LocalTime & l )
+std::ostream & write( std::ostream & os, const LocalTime & l )
 {
     os << l.year << "-"
             << std::setfill( '0' ) << std::setw( 2 ) << (unsigned)l.month << "-"
@@ -56,7 +59,7 @@ std::ostream & StrHelper::write( std::ostream & os, const LocalTime & l )
     return os;
 }
 
-std::ostream & StrHelper::write( std::ostream & os, const LocalTimeRange & l )
+std::ostream & write( std::ostream & os, const LocalTimeRange & l )
 {
     write( os, l.from );
     os << "-";
@@ -65,7 +68,7 @@ std::ostream & StrHelper::write( std::ostream & os, const LocalTimeRange & l )
     return os;
 }
 
-std::ostream & StrHelper::write( std::ostream & os, const Weekdays & l )
+std::ostream & write( std::ostream & os, const Weekdays & l )
 {
     static const char *days[] =
     {
@@ -89,7 +92,7 @@ std::ostream & StrHelper::write( std::ostream & os, const Weekdays & l )
     return os;
 }
 
-std::string StrHelper::to_string_YYYYMMDD( const Date & l )
+std::string to_string_YYYYMMDD( const Date & l )
 {
     std::ostringstream os;
 
@@ -100,7 +103,7 @@ std::string StrHelper::to_string_YYYYMMDD( const Date & l )
     return os.str();
 }
 
-std::string StrHelper::to_string_HHMM( const TimePoint24 & l )
+std::string to_string_HHMM( const TimePoint24 & l )
 {
     std::ostringstream os;
 
@@ -109,7 +112,7 @@ std::string StrHelper::to_string_HHMM( const TimePoint24 & l )
     return os.str();
 }
 
-std::ostream & StrHelper::write( std::ostream & os, const Date & l )
+std::ostream & write( std::ostream & os, const Date & l )
 {
     os << std::setfill( '0' );
 
@@ -118,11 +121,14 @@ std::ostream & StrHelper::write( std::ostream & os, const Date & l )
     return os;
 }
 
-std::ostream & StrHelper::write( std::ostream & os, const Email & l )
+std::ostream & write( std::ostream & os, const Email & l )
 {
     os << l.email;
 
     return os;
 }
 
+} // namespace str_helper
+
 } // namespace basic_objects
+

@@ -19,10 +19,10 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 */
 
-// $Revision: 12771 $ $Date:: 2020-02-19 #$ $Author: serge $
+// $Revision: 12975 $ $Date:: 2020-05-07 #$ $Author: serge $
 
-#ifndef LIB_BASIC_OBJECTS__CSV_HELPER_H
-#define LIB_BASIC_OBJECTS__CSV_HELPER_H
+#ifndef LIB_BASIC_OBJECTS__STR_HELPER_H
+#define LIB_BASIC_OBJECTS__STR_HELPER_H
 
 #include <sstream>              // std::ostream
 
@@ -31,57 +31,58 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 namespace basic_objects
 {
 
-class StrHelper
+namespace str_helper
 {
-public:
 
-    static std::ostream & write( std::ostream & os, const TimePoint24 & l );
-    static std::ostream & write( std::ostream & os, const TimeWindow & l );
-    static std::ostream & write( std::ostream & os, const LocalTime & l );
-    static std::ostream & write( std::ostream & os, const LocalTimeRange & r );
-    static std::ostream & write( std::ostream & os, const Weekdays & l );
-    static std::ostream & write( std::ostream & os, const Date & l );
-    static std::ostream & write( std::ostream & os, const Email & l );
+std::ostream & write( std::ostream & os, const TimePoint24 & l );
+std::ostream & write( std::ostream & os, const TimeWindow & l );
+std::ostream & write( std::ostream & os, const LocalTime & l );
+std::ostream & write( std::ostream & os, const LocalTimeRange & r );
+std::ostream & write( std::ostream & os, const Weekdays & l );
+std::ostream & write( std::ostream & os, const Date & l );
+std::ostream & write( std::ostream & os, const Email & l );
 
-    template<class T>
-    static std::string to_string( const T & l )
-    {
-        std::ostringstream os;
+template<class T>
+std::string to_string( const T & l )
+{
+    std::ostringstream os;
 
-        write( os, l );
+    write( os, l );
 
-        return os.str();
-    }
+    return os.str();
+}
 
-    static std::string to_string_YYYYMMDD( const Date & l );
-    static std::string to_string_HHMM( const TimePoint24 & l );
-};
+std::string to_string_YYYYMMDD( const Date & l );
+std::string to_string_HHMM( const TimePoint24 & l );
+
+} // namespace str_helper
 
 inline std::ostream& operator<<( std::ostream& os, const TimePoint24 & l )
 {
-    return StrHelper::write( os, l );
+    return str_helper::write( os, l );
 }
 
 inline std::ostream& operator<<( std::ostream& os, const TimeWindow & l )
 {
-    return StrHelper::write( os, l );
+    return str_helper::write( os, l );
 }
 
 inline std::ostream& operator<<( std::ostream& os, const LocalTime & l )
 {
-    return StrHelper::write( os, l );
+    return str_helper::write( os, l );
 }
 
 inline std::ostream& operator<<( std::ostream& os, const Weekdays & l )
 {
-    return StrHelper::write( os, l );
+    return str_helper::write( os, l );
 }
 
 inline std::ostream& operator<<( std::ostream& os, const Email & l )
 {
-    return StrHelper::write( os, l );
+    return str_helper::write( os, l );
 }
 
 } // namespace basic_objects
 
-#endif // LIB_BASIC_OBJECTS__CSV_HELPER_H
+#endif // LIB_BASIC_OBJECTS__STR_HELPER_H
+
