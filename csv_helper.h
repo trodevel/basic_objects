@@ -19,7 +19,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 */
 
-// $Revision: 12692 $ $Date:: 2020-02-03 #$ $Author: serge $
+// $Revision: 12986 $ $Date:: 2020-05-07 #$ $Author: serge $
 
 #ifndef LIB_BASIC_OBJECTS__CSV_HELPER_H
 #define LIB_BASIC_OBJECTS__CSV_HELPER_H
@@ -30,18 +30,20 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 namespace basic_objects
 {
 
-class CsvHelper
+namespace csv_helper
 {
-public:
-    static std::ostream & write( std::ostream & os, const Date & r );
-    static std::ostream & write( std::ostream & os, const TimePoint24 & r );
-    static std::ostream & write( std::ostream & os, const TimeWindow & r );
-    static std::ostream & write( std::ostream & os, const LocalTime & r );
-    static std::ostream & write( std::ostream & os, const LocalTimeRange & r );
-    static std::ostream & write( std::ostream & os, const Weekdays & r );
-    static std::ostream & write( std::ostream & os, const Email & r );
-};
+
+std::ostream & write( std::ostream & os, const Date & r );
+std::ostream & write( std::ostream & os, const TimePoint24 & r );
+std::ostream & write( std::ostream & os, const TimeWindow & r );
+std::ostream & write( std::ostream & os, const LocalTime & r );
+std::ostream & write( std::ostream & os, const LocalTimeRange & r );
+std::ostream & write( std::ostream & os, const Weekdays & r );
+std::ostream & write( std::ostream & os, const Email & r );
+
+} // namespace csv_helper
 
 } // namespace basic_objects
 
 #endif // LIB_BASIC_OBJECTS__CSV_HELPER_H
+
