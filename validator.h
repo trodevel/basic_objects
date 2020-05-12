@@ -19,7 +19,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 */
 
-// $Revision: 13028 $ $Date:: 2020-05-13 #$ $Author: serge $
+// $Revision: 13029 $ $Date:: 2020-05-13 #$ $Author: serge $
 
 #include "protocol.h"      // Date...
 
@@ -29,14 +29,14 @@ namespace basic_objects
 namespace validator
 {
 
-bool validate( const Weekdays & r );
-bool validate( const TimeRange & r );
-bool validate( const LocalTimeRange & r );
-bool validate( const Date & r );
-bool validate( const LocalTime & r );
-bool validate( const TimePoint24 & r );
-bool validate( const TimeWindow & r );
-bool validate( const Email & r );
+bool validate( const std::string & prefix, const Weekdays & r );
+bool validate( const std::string & prefix, const TimeRange & r );
+bool validate( const std::string & prefix, const LocalTimeRange & r );
+bool validate( const std::string & prefix, const Date & r );
+bool validate( const std::string & prefix, const LocalTime & r );
+bool validate( const std::string & prefix, const TimePoint24 & r );
+bool validate( const std::string & prefix, const TimeWindow & r );
+bool validate( const std::string & prefix, const Email & r );
 
 } // namespace validator
 
