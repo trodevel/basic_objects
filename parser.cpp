@@ -19,21 +19,22 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 */
 
-// $Revision: 12797 $ $Date:: 2020-02-26 #$ $Author: serge $
+// $Revision: 13058 $ $Date:: 2020-05-15 #$ $Author: serge $
 
 #include "parser.h"             // self
 
-#include "generic_protocol/parser.h" // generic_protocol::Parser::get_value_or_throw()
-#include "basic_parser/exported_parser.h"             // basic_parser::get_value_or_throw
-#include "exported_validator.h"      // Validator
+#include "basic_parser/parser.h"     // basic_parser::get_value_or_throw
 
 namespace basic_objects
 {
 
-using basic_parser::get_value_or_throw;
-using basic_parser::get_value_or_throw_uint32;
+namespace parser
+{
 
-TimePoint24 * Parser::to_TimePoint24( TimePoint24 * res, const std::string & prefix, const generic_request::Request & r )
+using basic_parser::parser::get_value_or_throw;
+using basic_parser::parser::get_value_or_throw_t;
+
+void get_value_or_throw( TimePoint24 * res, const std::string & prefix, const generic_request::Request & r )
 {
     uint32_t v = 0;
 
@@ -41,19 +42,15 @@ TimePoint24 * Parser::to_TimePoint24( TimePoint24 * res, const std::string & pre
 
     res->hh = v / 100;
     res->mm = v % 100;
-
-    return res;
 }
 
-TimeWindow * Parser::to_TimeWindow( TimeWindow * res, const std::string & prefix, const generic_request::Request & r )
+void get_value_or_throw( TimeWindow * res, const std::string & prefix, const generic_request::Request & r )
 {
-    to_TimePoint24( & res->from, prefix + ".FROM", r );
-    to_TimePoint24( & res->to, prefix + ".TO", r );
-
-    return res;
+    get_value_or_throw( & res->from, prefix + ".FROM", r );
+    get_value_or_throw( & res->to, prefix + ".TO", r );
 }
 
-LocalTime *  Parser::to_LocalTime( LocalTime * res, const std::string & prefix, const generic_request::Request & r )
+void get_value_or_throw( LocalTime * res, const std::string & prefix, const generic_request::Request & r )
 {
     uint64_t v = 0;
 
@@ -67,13 +64,11 @@ LocalTime *  Parser::to_LocalTime( LocalTime * res, const std::string & prefix, 
     res->hh = v / 10000;        v %= 10000;
     res->mm = v / 100;          v %= 100;
     res->ss = v;
-
-    return res;
 }
 
-void Parser::to_Weekdays( Weekdays & res, const std::string & prefix, const generic_request::Request & r )
+void get_value_or_throw( Weekdays * res, const std::string & prefix, const generic_request::Request & r )
 {
-    res.mask   =
+    res->mask   =
             Weekdays::weekdays_e::MO +
             Weekdays::weekdays_e::TU +
             Weekdays::weekdays_e::WE +
@@ -82,24 +77,22 @@ void Parser::to_Weekdays( Weekdays & res, const std::string & prefix, const gene
             Weekdays::weekdays_e::SA +
             Weekdays::weekdays_e::SU;
 
-    r.get_value_converted( prefix + ".MASK", res.mask );
-
-    ::basic_parser::validator::validate( res );
+    r.get_value_converted( prefix + ".MASK", res->mask );
 }
 
-void Parser::to_TimeRange( TimeRange * res, const std::string & prefix, const generic_request::Request & r )
+void get_value_or_throw( TimeRange * res, const std::string & prefix, const generic_request::Request & r )
 {
     r.get_value_converted( prefix + ".FROM",    res->from );
     r.get_value_converted( prefix + ".TO",      res->to );
 }
 
-void Parser::to_LocalTimeRange( LocalTimeRange * res, const std::string & prefix, const generic_request::Request & r )
+void get_value_or_throw( LocalTimeRange * res, const std::string & prefix, const generic_request::Request & r )
 {
-    to_LocalTime( & res->from,  prefix + ".FROM",    r );
-    to_LocalTime( & res->to,    prefix + ".TO",      r );
+    get_value_or_throw( & res->from,  prefix + ".FROM",    r );
+    get_value_or_throw( & res->to,    prefix + ".TO",      r );
 }
 
-Date * Parser::to_Date( Date * res, const std::string & key, const generic_request::Request & r )
+void get_value_or_throw( Date * res, const std::string & key, const generic_request::Request & r )
 {
     res->year   = 0;
     res->month  = 0;
@@ -113,19 +106,15 @@ Date * Parser::to_Date( Date * res, const std::string & key, const generic_reque
         res->month  = ( birthday / 100 ) % 100;
         res->day    = birthday % 100;
     }
-
-    ::basic_parser::validator::validate( * res );
-
-    return res;
 }
 
-Email * Parser::to_Email( Email * res, const std::string & key, const generic_request::Request & r )
+void get_value_or_throw( Email * res, const std::string & key, const generic_request::Request & r )
 {
     res->email.clear();
 
     r.get_value( key, res->email );
-
-    return res;
 }
+
+} // namespace parser
 
 } // namespace basic_objects

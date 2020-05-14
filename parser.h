@@ -19,7 +19,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 */
 
-// $Revision: 12726 $ $Date:: 2020-02-15 #$ $Author: serge $
+// $Revision: 13058 $ $Date:: 2020-05-15 #$ $Author: serge $
 
 #include <stdexcept>            // std::runtime_error
 
@@ -31,21 +31,20 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 namespace basic_objects
 {
 
-class Parser
+namespace parser
 {
-public:
-    typedef basic_parser::MalformedRequest  MalformedRequest;
 
-public:
-    static void                         to_TimeRange( TimeRange * res, const std::string & prefix, const generic_request::Request & r );
-    static void                         to_LocalTimeRange( LocalTimeRange * res, const std::string & prefix, const generic_request::Request & r );
-    static LocalTime *                  to_LocalTime( LocalTime * res, const std::string & prefix, const generic_request::Request & r );
-    static TimePoint24 *                to_TimePoint24( TimePoint24 * res, const std::string & prefix, const generic_request::Request & r );
-    static TimeWindow *                 to_TimeWindow( TimeWindow * res, const std::string & prefix, const generic_request::Request & r );
-    static void                         to_Weekdays( Weekdays & res, const std::string & prefix, const generic_request::Request & r );
-    static Date *                       to_Date( Date * res, const std::string & key, const generic_request::Request & r );
-    static Email *                      to_Email( Email * res, const std::string & key, const generic_request::Request & r );
-};
+typedef basic_parser::MalformedRequest  MalformedRequest;
+
+void get_value_or_throw( TimeRange * res, const std::string & key, const generic_request::Request & r );
+void get_value_or_throw( LocalTimeRange * res, const std::string & key, const generic_request::Request & r );
+void get_value_or_throw( LocalTime * res, const std::string & key, const generic_request::Request & r );
+void get_value_or_throw( TimePoint24 * res, const std::string & key, const generic_request::Request & r );
+void get_value_or_throw( TimeWindow * res, const std::string & key, const generic_request::Request & r );
+void get_value_or_throw( Weekdays * res, const std::string & key, const generic_request::Request & r );
+void get_value_or_throw( Date * res, const std::string & key, const generic_request::Request & r );
+void get_value_or_throw( Email * res, const std::string & key, const generic_request::Request & r );
+
+} // namespace parser
 
 } // namespace basic_objects
-
