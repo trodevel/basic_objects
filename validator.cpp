@@ -19,7 +19,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 */
 
-// $Revision: 13029 $ $Date:: 2020-05-13 #$ $Author: serge $
+// $Revision: 13059 $ $Date:: 2020-05-15 #$ $Author: serge $
 
 
 #include "validator.h"          // self
@@ -38,7 +38,7 @@ namespace validator
 bool validate( const std::string & prefix, const Weekdays & r )
 {
     if( r.mask <= 0 || r.mask > 127 )
-        throw Parser::MalformedRequest( prefix + " is invalid" );
+        throw parser::MalformedRequest( prefix + " is invalid" );
 
     return true;
 }
@@ -74,13 +74,13 @@ bool validate( const std::string & prefix, const Date & r )
         return true;
 
     if( ( r.year < 1900 || r.year > 2100 ) && r.year != 0 )
-        throw Parser::MalformedRequest( prefix + ": year not in [1900, 2100]" );
+        throw parser::MalformedRequest( prefix + ": year not in [1900, 2100]" );
 
     if( r.month < 1 || r.month > 12 )
-        throw Parser::MalformedRequest( prefix + ": month not in [1, 12]" );
+        throw parser::MalformedRequest( prefix + ": month not in [1, 12]" );
 
     if( r.day < 1 || r.day > 31 )
-        throw Parser::MalformedRequest( prefix + ": day not in [1, 31]" );
+        throw parser::MalformedRequest( prefix + ": day not in [1, 31]" );
 
     return true;
 }
@@ -88,10 +88,10 @@ bool validate( const std::string & prefix, const Date & r )
 bool validate( const std::string & prefix, const TimePoint24 & r )
 {
     if( r.hh > 23 )
-        throw Parser::MalformedRequest( prefix + ".HH > 23" );
+        throw parser::MalformedRequest( prefix + ".HH > 23" );
 
     if( r.mm > 59 )
-        throw Parser::MalformedRequest( prefix + ".MM > 59" );
+        throw parser::MalformedRequest( prefix + ".MM > 59" );
 
     return true;
 }
@@ -107,31 +107,31 @@ bool validate( const std::string & prefix, const TimeWindow & r )
 bool validate( const std::string & prefix, const LocalTime & r )
 {
     if( r.year == 0 )
-        throw Parser::MalformedRequest( prefix + ": year is 0" );
+        throw parser::MalformedRequest( prefix + ": year is 0" );
 
     if( r.month == 0 )
-        throw Parser::MalformedRequest( prefix + ": month is 0" );
+        throw parser::MalformedRequest( prefix + ": month is 0" );
 
     if( r.day == 0 )
-        throw Parser::MalformedRequest( prefix + ": day is 0" );
+        throw parser::MalformedRequest( prefix + ": day is 0" );
 
     if( r.year > 9999 )
-        throw Parser::MalformedRequest( prefix + ": year > 9999" );
+        throw parser::MalformedRequest( prefix + ": year > 9999" );
 
     if( r.month > 12 )
-        throw Parser::MalformedRequest( prefix + ": month > 12" );
+        throw parser::MalformedRequest( prefix + ": month > 12" );
 
     if( r.day > 31 )
-        throw Parser::MalformedRequest( prefix + ": day > 31" );
+        throw parser::MalformedRequest( prefix + ": day > 31" );
 
     if( r.hh > 23 )
-        throw Parser::MalformedRequest( prefix + ": hh > 23" );
+        throw parser::MalformedRequest( prefix + ": hh > 23" );
 
     if( r.mm > 59 )
-        throw Parser::MalformedRequest( prefix + ": mm > 59" );
+        throw parser::MalformedRequest( prefix + ": mm > 59" );
 
     if( r.ss > 59 )
-        throw Parser::MalformedRequest( prefix + ": ss > 59" );
+        throw parser::MalformedRequest( prefix + ": ss > 59" );
 
     return true;
 }
@@ -139,7 +139,7 @@ bool validate( const std::string & prefix, const LocalTime & r )
 bool validate( const std::string & prefix, const Email & r )
 {
     if( utils::regex_match( r.email, "^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9.\\-]+$" ) == false )
-        throw Parser::MalformedRequest( prefix + ": malformed email" );
+        throw parser::MalformedRequest( prefix + ": malformed email" );
 
     return true;
 }
