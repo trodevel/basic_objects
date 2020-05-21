@@ -21,11 +21,9 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 */
 
-// $Revision: 12727 $ $Date:: 2020-02-15 #$ $Author: serge $
+// $Revision: 13105 $ $Date:: 2020-05-21 #$ $Author: serge $
 
 namespace basic_objects;
-
-require_once __DIR__.'/../generic_protocol/request_assembler.php';
 
 class TimePoint24
 {
@@ -36,14 +34,6 @@ class TimePoint24
     {
         $this->hh   = 0;
         $this->mm   = 0;
-    }
-
-    public function to_generic_request( $prefix )
-    {
-        $res = array(
-            $prefix => ( $this->hh * 100 + $this->mm ) );
-
-        return \generic_protocol\assemble_request( $res );
     }
 }
 
@@ -59,13 +49,6 @@ class TimeWindow
 
         $this->to->hh = 23;
         $this->to->mm = 59;
-    }
-
-    public function to_generic_request( $prefix )
-    {
-        return
-            $this->from->to_generic_request( $prefix . ".FROM" ) .
-            $this->to->to_generic_request(   $prefix . ".TO" );
     }
 }
 
@@ -93,14 +76,6 @@ class LocalTime
         return $this->year * 10000000000 + $this->month * 100000000 + $this->day * 1000000
             + $this->hh * 10000 + $this->mm * 100 + $this->ss;
     }
-
-    public function to_generic_request( $key_name )
-    {
-        $res = array(
-            $key_name  => $this->get_encoded() );
-
-        return \generic_protocol\assemble_request( $res );
-    }
 };
 
 class Weekdays
@@ -121,15 +96,6 @@ class Weekdays
         $this->mask    =
         self::MO + self::TU + self::WE + self::TH + self::FR + self::SA + self::SU;
     }
-
-    public function to_generic_request( $prefix )
-    {
-        $res = array(
-                $prefix . ".MASK" => $this->mask
-            );
-
-        return \generic_protocol\assemble_request( $res );
-    }
 }
 
 class TimeRange
@@ -142,15 +108,6 @@ class TimeRange
         $this->from     = $from;
         $this->to       = $to;
     }
-
-    public function to_generic_request( $prefix )
-    {
-        $res = array(
-            $prefix . ".FROM" => $this->from,
-            $prefix . ".TO"   => $this->to );
-
-        return \generic_protocol\assemble_request( $res );
-    }
 }
 
 class LocalTimeRange
@@ -162,12 +119,6 @@ class LocalTimeRange
     {
         $this->from     = $from;
         $this->to       = $to;
-    }
-
-    public function to_generic_request( $prefix )
-    {
-        return $this->from->to_generic_request( $prefix . ".FROM" ) .
-            $this->to->to_generic_request( $prefix . ".TO" );
     }
 }
 
@@ -188,31 +139,15 @@ class Date
     {
         return $this->year * 10000 + $this->month * 100 + $this->day;
     }
-
-    public function to_generic_request( $key_name )
-    {
-        $res = array(
-                $key_name  => $this->get_encoded() );
-
-        return \generic_protocol\assemble_request( $res );
-    }
 };
 
 class Email
 {
     public          $email;  // email
-    
+
     function __construct( $email )
     {
         $this->email    = $email;
-    }
-    
-    public function to_generic_request( $key_name )
-    {
-        $res = array(
-            $key_name . ":X"  => str2hex( $this->email ) );
-        
-        return \generic_protocol\assemble_request( $res );
     }
 };
 
