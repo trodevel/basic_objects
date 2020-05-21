@@ -21,14 +21,14 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 */
 
-// $Revision: 13116 $ $Date:: 2020-05-21 #$ $Author: serge $
+// $Revision: 13117 $ $Date:: 2020-05-21 #$ $Author: serge $
 
 namespace basic_objects;
 
 require_once 'protocol.php';
 require_once __DIR__.'/../php_snippets/html_elems.php';      // get_html_table_row_header
 
-function to_string_array( & $obj )
+function to_string__array( & $obj )
 {
     $size   = sizeof( $obj );
 
@@ -41,12 +41,12 @@ function to_string_array( & $obj )
     return $res;
 }
 
-function to_string_TimePoint24( & $obj )
+function to_string__TimePoint24( & $obj )
 {
     return sprintf( "%02d:%02d", $obj->hh, $obj->mm );
 }
 
-function to_string_LocalTime( & $obj )
+function to_string__LocalTime( & $obj )
 {
     return sprintf( "%04d-%02d-%02d %02d:%02d:%02d", $obj->year, $obj->month, $obj->day, $obj->hh, $obj->mm, $obj->ss );
 }
@@ -63,22 +63,22 @@ function to_html_Weekdays( & $obj )
     ) );
 }
 
-function to_string_TimeRange( $obj )
+function to_string__TimeRange( $obj )
 {
     return "from=" . $obj->from . " to=" . $obj->to;
 }
 
-function to_string_LocalTimeRange( $obj )
+function to_string__LocalTimeRange( $obj )
 {
-    return "from=" . to_string_LocalTime( $obj->from ) . " to=" . to_string_LocalTime( $obj->to );
+    return "from=" . to_string__LocalTime( $obj->from ) . " to=" . to_string__LocalTime( $obj->to );
 }
 
-function to_string_Date( & $obj )
+function to_string__Date( & $obj )
 {
     return sprintf( "%04d-%02d-%02d", $obj->year, $obj->month, $obj->day );
 }
 
-function to_string_Email( & $obj )
+function to_string__Email( & $obj )
 {
     return $obj->email;
 }
