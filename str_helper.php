@@ -21,7 +21,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 */
 
-// $Revision: 12728 $ $Date:: 2020-02-15 #$ $Author: serge $
+// $Revision: 13116 $ $Date:: 2020-05-21 #$ $Author: serge $
 
 namespace basic_objects;
 
@@ -61,6 +61,16 @@ function to_html_Weekdays( & $obj )
     return get_html_table_data_elems( array(
             $obj->mask
     ) );
+}
+
+function to_string_TimeRange( $obj )
+{
+    return "from=" . $obj->from . " to=" . $obj->to;
+}
+
+function to_string_LocalTimeRange( $obj )
+{
+    return "from=" . to_string_LocalTime( $obj->from ) . " to=" . to_string_LocalTime( $obj->to );
 }
 
 function to_string_Date( & $obj )
