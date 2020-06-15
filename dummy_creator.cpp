@@ -19,7 +19,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 */
 
-// $Revision: 13272 $ $Date:: 2020-06-15 #$ $Author: serge $
+// $Revision: 13275 $ $Date:: 2020-06-16 #$ $Author: serge $
 
 #include "dummy_creator.h"             // self
 
@@ -61,8 +61,8 @@ LocalTime create__LocalTime()
     LocalTime res;
 
     res.year   = create__uint8() % 24 + 2010;
-    res.month  = create__uint8() % 12;
-    res.day    = create__uint8() % 30;
+    res.month  = create__uint8() % 12 + 1;
+    res.day    = create__uint8() % 30 + 1;
     res.hh = create__uint8() % 24;
     res.mm = create__uint8() % 60;
     res.ss = create__uint8() % 60;
@@ -111,8 +111,8 @@ Date create__Date()
     Date res;
 
     res.year   = create__uint8() % 24 + 2010;
-    res.month  = create__uint8() % 12;
-    res.day    = create__uint8() % 30;
+    res.month  = create__uint8() % 12 + 1;
+    res.day    = create__uint8() % 30 + 1;
 
     return res;
 }
