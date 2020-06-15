@@ -19,7 +19,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 */
 
-// $Revision: 12977 $ $Date:: 2020-05-07 #$ $Author: serge $
+// $Revision: 13270 $ $Date:: 2020-06-15 #$ $Author: serge $
 
 #include "str_helper.h"             // self
 
@@ -55,6 +55,15 @@ std::ostream & write( std::ostream & os, const LocalTime & l )
             << std::setfill( '0' ) << std::setw( 2 ) << (unsigned)l.hh << ":"
             << std::setfill( '0' ) << std::setw( 2 ) << (unsigned)l.mm << ":"
             << std::setfill( '0' ) << std::setw( 2 ) << (unsigned)l.ss;
+
+    return os;
+}
+
+std::ostream & write( std::ostream & os, const TimeRange & l )
+{
+    os << l.from;
+    os << "-";
+    os << l.to;
 
     return os;
 }

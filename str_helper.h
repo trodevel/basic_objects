@@ -19,7 +19,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 */
 
-// $Revision: 12975 $ $Date:: 2020-05-07 #$ $Author: serge $
+// $Revision: 13270 $ $Date:: 2020-06-15 #$ $Author: serge $
 
 #ifndef LIB_BASIC_OBJECTS__STR_HELPER_H
 #define LIB_BASIC_OBJECTS__STR_HELPER_H
@@ -37,6 +37,7 @@ namespace str_helper
 std::ostream & write( std::ostream & os, const TimePoint24 & l );
 std::ostream & write( std::ostream & os, const TimeWindow & l );
 std::ostream & write( std::ostream & os, const LocalTime & l );
+std::ostream & write( std::ostream & os, const TimeRange & r );
 std::ostream & write( std::ostream & os, const LocalTimeRange & r );
 std::ostream & write( std::ostream & os, const Weekdays & l );
 std::ostream & write( std::ostream & os, const Date & l );
