@@ -21,7 +21,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 */
 
-// $Revision: 13117 $ $Date:: 2020-05-21 #$ $Author: serge $
+// $Revision: 13284 $ $Date:: 2020-06-16 #$ $Author: serge $
 
 namespace basic_objects;
 
@@ -81,6 +81,30 @@ function to_string__Date( & $obj )
 function to_string__Email( & $obj )
 {
     return $obj->email;
+}
+
+function to_string( $obj )
+{
+    $handler_map = array(
+        'basic_objects\TimePoint24'         => 'to_string__TimePoint24',
+        'basic_objects\TimeWindow'         => 'to_string__TimeWindow',
+        'basic_objects\LocalTime'         => 'to_string__LocalTime',
+        'basic_objects\Weekdays'         => 'to_string__Weekdays',
+        'basic_objects\TimeRange'         => 'to_string__TimeRange',
+        'basic_objects\LocalTimeRange'         => 'to_string__LocalTimeRange',
+        'basic_objects\Date'         => 'to_string__Date',
+        'basic_objects\Email'         => 'to_string__Email',
+    );
+
+    $type = get_class( $obj );
+
+    if( array_key_exists( $type, $handler_map ) )
+    {
+        $func = '\\basic_objects\\' . $handler_map[ $type ];
+        return $func( $obj );
+    }
+
+    return NULL;
 }
 
 ?>
