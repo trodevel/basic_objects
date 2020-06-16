@@ -21,7 +21,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 */
 
-// $Revision: 13280 $ $Date:: 2020-06-16 #$ $Author: serge $
+// $Revision: 13283 $ $Date:: 2020-06-16 #$ $Author: serge $
 
 namespace basic_objects;
 
@@ -33,8 +33,8 @@ function create_dummy__TimePoint24()
 {
     $res = new TimePoint24;
 
-    $res->hh = \basic_parser\create_dummy__uint8() % 24;
-    $res->mm = \basic_parser\create_dummy__uint8() % 60;
+    $res->hh = \basic_parser\create_dummy__int() % 24;
+    $res->mm = \basic_parser\create_dummy__int() % 60;
 
     return $res;
 }
@@ -53,12 +53,12 @@ function create_dummy__LocalTime()
 {
     $res = new LocalTime;
 
-    $res->year   = \basic_parser\create_dummy__uint8() % 24 + 2010;
-    $res->month  = \basic_parser\create_dummy__uint8() % 12 + 1;
-    $res->day    = \basic_parser\create_dummy__uint8() % 30 + 1;
-    $res->hh = \basic_parser\create_dummy__uint8() % 24;
-    $res->mm = \basic_parser\create_dummy__uint8() % 60;
-    $res->ss = \basic_parser\create_dummy__uint8() % 60;
+    $res->year   = \basic_parser\create_dummy__int() % 24 + 2010;
+    $res->month  = \basic_parser\create_dummy__int() % 12 + 1;
+    $res->day    = \basic_parser\create_dummy__int() % 30 + 1;
+    $res->hh = \basic_parser\create_dummy__int() % 24;
+    $res->mm = \basic_parser\create_dummy__int() % 60;
+    $res->ss = \basic_parser\create_dummy__int() % 60;
 
     return $res;
 }
@@ -83,8 +83,8 @@ function create_dummy__TimeRange()
 {
     $res = new TimeRange;
 
-    $res->from = \basic_parser\create_dummy__uint32() + 1500000000;
-    $res->to = \basic_parser\create_dummy__uint32() + 1500000000;
+    $res->from = \basic_parser\create_dummy__int() + 1500000000;
+    $res->to = \basic_parser\create_dummy__int() + 1500000000;
 
     return $res;
 }
@@ -103,9 +103,9 @@ function create_dummy__Date()
 {
     $res = new Date;
 
-    $res->year   = \basic_parser\create_dummy__uint8() % 24 + 2010;
-    $res->month  = \basic_parser\create_dummy__uint8() % 12 + 1;
-    $res->day    = \basic_parser\create_dummy__uint8() % 30 + 1;
+    $res->year   = \basic_parser\create_dummy__int() % 24 + 2010;
+    $res->month  = \basic_parser\create_dummy__int() % 12 + 1;
+    $res->day    = \basic_parser\create_dummy__int() % 30 + 1;
 
     return $res;
 }
