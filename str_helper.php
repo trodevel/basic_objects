@@ -21,7 +21,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 */
 
-// $Revision: 13284 $ $Date:: 2020-06-16 #$ $Author: serge $
+// $Revision: 13285 $ $Date:: 2020-06-16 #$ $Author: serge $
 
 namespace basic_objects;
 
@@ -44,6 +44,11 @@ function to_string__array( & $obj )
 function to_string__TimePoint24( & $obj )
 {
     return sprintf( "%02d:%02d", $obj->hh, $obj->mm );
+}
+
+function to_string__TimeWindow( & $obj )
+{
+    return to_string__TimePoint24( $obj->from ) . "-" . to_string__TimePoint24( $obj->to );
 }
 
 function to_string__LocalTime( & $obj )
