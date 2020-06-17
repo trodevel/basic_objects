@@ -1,0 +1,97 @@
+############################################################
+#
+# Basic Objects
+#
+# Copyright (C) 2020 Sergey Kolevatov
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program. If not, see <http://www.gnu.org/licenses/>.
+#
+
+# $Revision: 13292 $ $Date:: 2020-06-17 #$ $Author: serge $
+
+############################################################
+
+protocol basic_objects
+
+obj TimePoint24
+
+    uint8             hh : [0, 23]
+    uint8             mm : [0, 59]
+
+obj_end
+
+obj TimeWindow
+
+    o TimePoint24       from
+    o TimePoint24       to
+
+obj_end
+
+obj LocalTime
+
+    uint32            year : [1800,3000]
+    uint8             month : [1, 12]
+    uint8             day : [1, 31]
+
+    uint8             hh : [0, 23]
+    uint8             mm : [0, 59]
+    uint8             ss : [0, 59]
+
+obj_end
+
+enum weekdays_e
+
+        MO = 1
+        TU = 2
+        WE = 4
+        TH = 8
+        FR = 16
+        SA = 32
+        SU = 64
+
+enum_end
+
+obj Weekdays
+
+    uint32            mask
+
+obj_end
+
+obj TimeRange
+
+    uint32        from   # epoch (seconds)
+    uint32        to     # epoch (seconds)
+
+obj_end
+
+obj LocalTimeRange
+
+    o LocalTime       from
+    o LocalTime       to
+
+obj_end
+
+obj Date
+
+    uint32            year : [1800,3000]
+    uint8             month : [1, 12]
+    uint8             day : [1, 31]
+
+obj_end
+
+obj Email
+
+    string     email
+
+obj_end
