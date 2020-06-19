@@ -1,18 +1,18 @@
 <?php
 
-// $Revision: 9250 $ $Date:: 2018-05-24 #$ $Author: serge $
+// $Revision: 13300 $ $Date:: 2020-06-19 #$ $Author: serge $
 
-require_once '../basic_objects.php';
+require_once '../protocol.php';
 require_once '../parser.php';
 require_once '../str_helper.php';
 
 {
-    $resp  = array( '201805041739' );
+    $resp  = array( '2018', '05', '04', '17' , '39', '15' );
     $offset = 0;
 
-    $parsed = \basic_objects\parse_LocalTime( $resp, $offset );
+    $parsed = \basic_objects\parse__LocalTime( $resp, $offset );
 
-    echo "parsed: " . \basic_objects\to_string_LocalTime( $parsed ) . "\n";
+    echo "parsed: " . \basic_objects\to_string__LocalTime( $parsed ) . "\n";
 
     print_r( $parsed );
 }
