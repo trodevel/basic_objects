@@ -1,83 +1,39 @@
 <?php
 
-/*
-
-Basic Objects.
-
-Copyright (C) 2018 Sergey Kolevatov
-
-This program is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
-
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with this program. If not, see <http://www.gnu.org/licenses/>.
-
-*/
-
-// $Revision: 13105 $ $Date:: 2020-05-21 #$ $Author: serge $
-
 namespace basic_objects;
 
+
+// includes
+require_once __DIR__.'/../basic_parser/object.php';
+
+// includes for used modules
+
+// Object
 class TimePoint24
 {
-    public             $hh;
-    public             $mm;
-
-    function __construct()
-    {
-        $this->hh   = 0;
-        $this->mm   = 0;
-    }
-}
-
-class TimeWindow
-{
-    public             $from;
-    public             $to;
-
-    function __construct()
-    {
-        $this->from = new TimePoint24;
-        $this->to   = new TimePoint24;
-
-        $this->to->hh = 23;
-        $this->to->mm = 59;
-    }
-}
-
-class LocalTime
-{
-    public          $year;  // year
-    public          $month; // month
-    public          $day;   // day
-    public          $hh;    // hour
-    public          $mm;    // minute
-    public          $ss;    // second
-
-    function __construct( $year, $month, $day, $hh, $mm, $ss )
-    {
-        $this->year     = $year;
-        $this->month    = $month;
-        $this->day      = $day;
-        $this->hh       = $hh;
-        $this->mm       = $mm;
-        $this->ss       = $ss;
-    }
-
-    public function get_encoded()
-    {
-        return $this->year * 10000000000 + $this->month * 100000000 + $this->day * 1000000
-            + $this->hh * 10000 + $this->mm * 100 + $this->ss;
-    }
+    public $hh                  ; // type: uint8_t // valid range: [0, 23]
+    public $mm                  ; // type: uint8_t // valid range: [0, 59]
 };
 
+// Object
+class TimeWindow
+{
+    public $from                ; // type: TimePoint24
+    public $to                  ; // type: TimePoint24
+};
+
+// Object
+class LocalTime
+{
+    public $year                ; // type: uint32_t // valid range: [1800, 3000]
+    public $month               ; // type: uint8_t // valid range: [1, 12]
+    public $day                 ; // type: uint8_t // valid range: [1, 31]
+    public $hh                  ; // type: uint8_t // valid range: [0, 23]
+    public $mm                  ; // type: uint8_t // valid range: [0, 59]
+    public $ss                  ; // type: uint8_t // valid range: [0, 59]
+};
+
+// Object
 class Weekdays
 {
     // enum weekdays_e
@@ -89,66 +45,39 @@ class Weekdays
     const SA = 32;
     const SU = 64;
 
-    public              $mask;
+    public $mask                ; // type: uint32_t
+};
 
-    function __construct()
-    {
-        $this->mask    =
-        self::MO + self::TU + self::WE + self::TH + self::FR + self::SA + self::SU;
-    }
-}
-
+// Object
 class TimeRange
 {
-    public             $from;   // epoch (seconds)
-    public             $to;     // epoch (seconds)
+    public $from                ; // type: uint32_t
+    public $to                  ; // type: uint32_t
+};
 
-    function __construct( $from, $to )
-    {
-        $this->from     = $from;
-        $this->to       = $to;
-    }
-}
-
+// Object
 class LocalTimeRange
 {
-    public             $from;   // LocalTime
-    public             $to;     // LocalTime
+    public $from                ; // type: LocalTime
+    public $to                  ; // type: LocalTime
+};
 
-    function __construct( $from, $to )
-    {
-        $this->from     = $from;
-        $this->to       = $to;
-    }
-}
-
+// Object
 class Date
 {
-    public          $year;  // year
-    public          $month; // month
-    public          $day;   // day
-
-    function __construct( $year, $month, $day )
-    {
-        $this->year     = $year;
-        $this->month    = $month;
-        $this->day      = $day;
-    }
-
-    public function get_encoded()
-    {
-        return $this->year * 10000 + $this->month * 100 + $this->day;
-    }
+    public $year                ; // type: uint32_t // valid range: [1800, 3000]
+    public $month               ; // type: uint8_t // valid range: [1, 12]
+    public $day                 ; // type: uint8_t // valid range: [1, 31]
 };
 
+// Object
 class Email
 {
-    public          $email;  // email
-
-    function __construct( $email )
-    {
-        $this->email    = $email;
-    }
+    public $email               ; // type: string
 };
 
+# namespace_end basic_objects
+
+
 ?>
+

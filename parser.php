@@ -1,94 +1,62 @@
 <?php
 
-/*
-
-Parser.
-
-Copyright (C) 2018 Sergey Kolevatov
-
-This program is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
-
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with this program. If not, see <http://www.gnu.org/licenses/>.
-
-*/
-
-// $Revision: 12728 $ $Date:: 2020-02-15 #$ $Author: serge $
-
 namespace basic_objects;
 
-require_once __DIR__.'/../basic_parser/parser.php';    // basic_parser\parse_int()
-require_once 'protocol.php';
 
-function parse_TimePoint24( & $csv_arr, $offset )
+// includes
+require_once __DIR__.'/../basic_parser/parser.php';
+
+// objects
+
+function parse_TimePoint24( & $csv_arr, & $offset )
 {
     $res = new TimePoint24;
 
-    $v = intval( $csv_arr[ $offset + 0 ] );
-
-    //echo "parse_TimePoint24: v = $v, offset = $offset\n<br>\n"; // DEBUG
-
-    $res->hh = intval( $v / 100 );
-    $res->mm = intval( $v % 100 );
+    $res->hh = \basic_parser\parse_int( $csv_arr, $offset );
+    $res->mm = \basic_parser\parse_int( $csv_arr, $offset );
 
     return $res;
 }
 
-function parse_TimeWindow( & $csv_arr, $offset )
+function parse_TimeWindow( & $csv_arr, & $offset )
 {
     $res = new TimeWindow;
 
-    $res->from = parse_TimePoint24( $csv_arr, $offset + 0 );
-    $res->to   = parse_TimePoint24( $csv_arr, $offset + 1 );
-
-    return $res;
-}
-
-function parse_Weekdays( & $csv_arr, $offset )
-{
-    $res = new Weekdays;
-
-    $res->mask = intval( $csv_arr[ $offset + 0 ] );
+    $res->from = parse_TimePoint24( $csv_arr, $offset );
+    $res->to = parse_TimePoint24( $csv_arr, $offset );
 
     return $res;
 }
 
 function parse_LocalTime( & $csv_arr, & $offset )
 {
-    $v = intval( $csv_arr[ $offset + 0 ] );
-    $str = $csv_arr[ $offset + 0 ];
+    $res = new LocalTime;
 
-    // 201805041739
-    // 10000000000 + r.m * 100000000 + r.d * 1000000 + r.hh * 10000 + r.mm * 100 + r.ss;
+    $res->year = \basic_parser\parse_int( $csv_arr, $offset );
+    $res->month = \basic_parser\parse_int( $csv_arr, $offset );
+    $res->day = \basic_parser\parse_int( $csv_arr, $offset );
+    $res->hh = \basic_parser\parse_int( $csv_arr, $offset );
+    $res->mm = \basic_parser\parse_int( $csv_arr, $offset );
+    $res->ss = \basic_parser\parse_int( $csv_arr, $offset );
 
-    $dt = intval( substr( $str, 0, 8 ) );
-    $tm = intval( substr( $str, 8 ) );
+    return $res;
+}
 
-    //echo "str = $str\n";
-    //echo "dt = $dt\n";
-    //echo "tm = $tm\n";
-    //exit;
+function parse_Weekdays( & $csv_arr, & $offset )
+{
+    $res = new Weekdays;
 
-    $year   = intval( $dt / 10000 );    $dt %= 10000;
-    $month  = intval( $dt / 100 );      $dt %= 100;
-    $day    = intval( $dt );
+    $res->mask = \basic_parser\parse_int( $csv_arr, $offset );
 
+    return $res;
+}
 
-    $hh     = intval( $tm / 10000 );    $tm %= 10000;
-    $mm     = intval( $tm / 100 );      $tm %= 100;
-    $ss     = intval( $tm );
+function parse_TimeRange( & $csv_arr, & $offset )
+{
+    $res = new TimeRange;
 
-    $offset++;
-
-    $res = new LocalTime( $year, $month, $day, $hh, $mm, $ss );
+    $res->from = \basic_parser\parse_int( $csv_arr, $offset );
+    $res->to = \basic_parser\parse_int( $csv_arr, $offset );
 
     return $res;
 }
@@ -98,33 +66,63 @@ function parse_LocalTimeRange( & $csv_arr, & $offset )
     $res = new LocalTimeRange;
 
     $res->from = parse_LocalTime( $csv_arr, $offset );
-    $res->to   = parse_LocalTime( $csv_arr, $offset );
+    $res->to = parse_LocalTime( $csv_arr, $offset );
 
     return $res;
 }
 
-function parse_Date( & $csv_arr, $offset )
+function parse_Date( & $csv_arr, & $offset )
 {
-    // 19590725
+    $res = new Date;
 
-    $v = intval( $csv_arr[ $offset + 0 ] );
+    $res->year = \basic_parser\parse_int( $csv_arr, $offset );
+    $res->month = \basic_parser\parse_int( $csv_arr, $offset );
+    $res->day = \basic_parser\parse_int( $csv_arr, $offset );
 
-    $year  = intval( $v / 10000 );
-    $month = intval( ( $v % 10000 ) / 100 );
-    $day   = intval( $v % 100 );
-
-    return new Date( $year, $month, $day );
+    return $res;
 }
 
 function parse_Email( & $csv_arr, & $offset )
 {
     $res = new Email;
 
-    $res->email = $csv_arr[ $offset + 0 ];
-
-    $offset++;
+    $res->email = \basic_parser\parse_string( $csv_arr, $offset );
 
     return $res;
 }
+
+// base messages
+
+// messages
+
+// generic
+
+class Parser
+{
+
+protected static function parse_csv_array( $csv_arr )
+{
+    if( sizeof( $csv_arr ) < 1 )
+        return self::create_parse_error();
+
+    $handler_map = array(
+        // messages
+    );
+
+    $type = $csv_arr[0][0];
+
+    if( array_key_exists( $type, $handler_map ) )
+    {
+        $func = '\\basic_objects\\' . $handler_map[ $type ];
+        return $func( $obj );
+    }
+
+    return NULL;
+}
+
+}
+
+# namespace_end basic_objects
+
 
 ?>

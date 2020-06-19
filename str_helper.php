@@ -1,45 +1,35 @@
 <?php
 
-/*
-
-String Helper.
-
-Copyright (C) 2018 Sergey Kolevatov
-
-This program is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
-
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with this program. If not, see <http://www.gnu.org/licenses/>.
-
-*/
-
-// $Revision: 13285 $ $Date:: 2020-06-16 #$ $Author: serge $
-
 namespace basic_objects;
 
-require_once 'protocol.php';
-require_once __DIR__.'/../php_snippets/html_elems.php';      // get_html_table_row_header
 
-function to_string__array( & $obj )
+// includes
+require_once __DIR__.'/../basic_parser/str_helper.php';
+
+// enums
+
+function to_string__weekdays_e( $r )
 {
-    $size   = sizeof( $obj );
+    $map = array
+    (
+        weekdays_e__MO => 'MO',
+        weekdays_e__TU => 'TU',
+        weekdays_e__WE => 'WE',
+        weekdays_e__TH => 'TH',
+        weekdays_e__FR => 'FR',
+        weekdays_e__SA => 'SA',
+        weekdays_e__SU => 'SU',
+    );
 
-    $res = '';
-    for( $i = 0; $i < $size; $i++ )
+    if( array_key_exists( $r, $map ) )
     {
-        $res = $res . $obj[$i] . ", ";
+        return $map[ $r ];
     }
 
-    return $res;
+    return '?';
 }
+
+// objects
 
 function to_string__TimePoint24( & $obj )
 {
@@ -56,16 +46,15 @@ function to_string__LocalTime( & $obj )
     return sprintf( "%04d-%02d-%02d %02d:%02d:%02d", $obj->year, $obj->month, $obj->day, $obj->hh, $obj->mm, $obj->ss );
 }
 
-function get_header_Weekdays()
+function to_string__Weekdays( & $r )
 {
-    return get_html_table_header_elems( array( 'WEEKDAYS_MASK' ) );
-}
+    $res = "(";
 
-function to_html_Weekdays( & $obj )
-{
-    return get_html_table_data_elems( array(
-            $obj->mask
-    ) );
+    $res .= " mask=" . \basic_parser\to_string__int( $r->mask );
+
+    $res .= ")";
+
+    return $res;
 }
 
 function to_string__TimeRange( $obj )
@@ -88,9 +77,16 @@ function to_string__Email( & $obj )
     return $obj->email;
 }
 
+// base messages
+
+// messages
+
+// generic
+
 function to_string( $obj )
 {
     $handler_map = array(
+        // objects
         'basic_objects\TimePoint24'         => 'to_string__TimePoint24',
         'basic_objects\TimeWindow'         => 'to_string__TimeWindow',
         'basic_objects\LocalTime'         => 'to_string__LocalTime',
@@ -99,6 +95,7 @@ function to_string( $obj )
         'basic_objects\LocalTimeRange'         => 'to_string__LocalTimeRange',
         'basic_objects\Date'         => 'to_string__Date',
         'basic_objects\Email'         => 'to_string__Email',
+        // messages
     );
 
     $type = get_class( $obj );
@@ -111,5 +108,8 @@ function to_string( $obj )
 
     return NULL;
 }
+
+# namespace_end basic_objects
+
 
 ?>

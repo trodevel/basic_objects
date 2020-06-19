@@ -1,32 +1,11 @@
-/*
+#ifndef APG_BASIC_OBJECTS__STR_HELPER_H
+#define APG_BASIC_OBJECTS__STR_HELPER_H
 
-String Helper. Provides to_string() function.
+// system includes
+#include <sstream>
 
-Copyright (C) 2018 Sergey Kolevatov
-
-This program is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
-
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with this program. If not, see <http://www.gnu.org/licenses/>.
-
-*/
-
-// $Revision: 13270 $ $Date:: 2020-06-15 #$ $Author: serge $
-
-#ifndef LIB_BASIC_OBJECTS__STR_HELPER_H
-#define LIB_BASIC_OBJECTS__STR_HELPER_H
-
-#include <sstream>              // std::ostream
-
-#include "protocol.h"      // LocalTime
+// includes
+#include "protocol.h"
 
 namespace basic_objects
 {
@@ -34,14 +13,19 @@ namespace basic_objects
 namespace str_helper
 {
 
-std::ostream & write( std::ostream & os, const TimePoint24 & l );
-std::ostream & write( std::ostream & os, const TimeWindow & l );
-std::ostream & write( std::ostream & os, const LocalTime & l );
+// objects
+std::ostream & write( std::ostream & os, const TimePoint24 & r );
+std::ostream & write( std::ostream & os, const TimeWindow & r );
+std::ostream & write( std::ostream & os, const LocalTime & r );
+std::ostream & write( std::ostream & os, const Weekdays & r );
 std::ostream & write( std::ostream & os, const TimeRange & r );
 std::ostream & write( std::ostream & os, const LocalTimeRange & r );
-std::ostream & write( std::ostream & os, const Weekdays & l );
-std::ostream & write( std::ostream & os, const Date & l );
-std::ostream & write( std::ostream & os, const Email & l );
+std::ostream & write( std::ostream & os, const Date & r );
+std::ostream & write( std::ostream & os, const Email & r );
+
+// base messages
+
+// messages
 
 template<class T>
 std::string to_string( const T & l )
@@ -85,5 +69,4 @@ inline std::ostream& operator<<( std::ostream& os, const Email & l )
 
 } // namespace basic_objects
 
-#endif // LIB_BASIC_OBJECTS__STR_HELPER_H
-
+#endif // APG_BASIC_OBJECTS__STR_HELPER_H

@@ -1,58 +1,44 @@
-/*
+#ifndef APG_BASIC_OBJECTS__PROTOCOL_H
+#define APG_BASIC_OBJECTS__PROTOCOL_H
 
-Persek Protocol messages.
+// system includes
+#include <vector>
+#include <map>
 
-Copyright (C) 2015 Sergey Kolevatov
+// includes
+#include "basic_parser/object.h"
 
-This program is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
-
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with this program. If not, see <http://www.gnu.org/licenses/>.
-
-*/
-
-// $Revision: 12692 $ $Date:: 2020-02-03 #$ $Author: serge $
-
-#ifndef LIB_BASIC_OBJECTS__BASIC_OBJECTS_H
-#define LIB_BASIC_OBJECTS__BASIC_OBJECTS_H
-
-#include <cstdint>             // uint32_t
-#include <string>               // std::string
+// includes for used modules
 
 namespace basic_objects
 {
 
+// Object
 struct TimePoint24
 {
-    uint8_t             hh;
-    uint8_t             mm;
+    uint8_t              hh        ; // valid range: [0, 23]
+    uint8_t              mm        ; // valid range: [0, 59]
 };
 
+// Object
 struct TimeWindow
 {
-    TimePoint24         from;
-    TimePoint24         to;
+    TimePoint24          from      ;
+    TimePoint24          to        ;
 };
 
+// Object
 struct LocalTime
 {
-    uint32_t            year;
-    uint8_t             month;
-    uint8_t             day;
-
-    uint8_t             hh;
-    uint8_t             mm;
-    uint8_t             ss;
+    uint32_t             year      ; // valid range: [1800, 3000]
+    uint8_t              month     ; // valid range: [1, 12]
+    uint8_t              day       ; // valid range: [1, 31]
+    uint8_t              hh        ; // valid range: [0, 23]
+    uint8_t              mm        ; // valid range: [0, 59]
+    uint8_t              ss        ; // valid range: [0, 59]
 };
 
+// Object
 struct Weekdays
 {
     enum weekdays_e
@@ -66,42 +52,38 @@ struct Weekdays
         SU = 64
     };
 
-    uint32_t            mask;
+    uint32_t             mask      ;
 };
 
+// Object
 struct TimeRange
 {
-    TimeRange():
-        from( 0 ), to( 0 )
-    {
-    }
-
-    uint32_t        from;   // epoch (seconds)
-    uint32_t        to;     // epoch (seconds)
+    uint32_t             from      ;
+    uint32_t             to        ;
 };
 
+// Object
 struct LocalTimeRange
 {
-    LocalTimeRange()
-    {
-    }
-
-    LocalTime       from;
-    LocalTime       to;
+    LocalTime            from      ;
+    LocalTime            to        ;
 };
 
+// Object
 struct Date
 {
-    uint32_t        year;
-    uint8_t         month;
-    uint8_t         day;
+    uint32_t             year      ; // valid range: [1800, 3000]
+    uint8_t              month     ; // valid range: [1, 12]
+    uint8_t              day       ; // valid range: [1, 31]
 };
 
+// Object
 struct Email
 {
-    std::string     email;
+    std::string          email     ;
 };
 
 } // namespace basic_objects
 
-#endif // LIB_BASIC_OBJECTS__BASIC_OBJECTS_H
+#endif // APG_BASIC_OBJECTS__PROTOCOL_H
+

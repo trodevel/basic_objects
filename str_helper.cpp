@@ -1,35 +1,21 @@
-/*
-
-String Helper. Provides to_string() function.
-
-Copyright (C) 2018 Sergey Kolevatov
-
-This program is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
-
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with this program. If not, see <http://www.gnu.org/licenses/>.
-
-*/
-
-// $Revision: 13270 $ $Date:: 2020-06-15 #$ $Author: serge $
-
-#include "str_helper.h"             // self
-
+// system includes
+#include <map>
 #include <iomanip>                  // std::setfill
+
+// includes
+#include "str_helper.h"
+#include "basic_parser/str_helper.h"
 
 namespace basic_objects
 {
 
 namespace str_helper
 {
+
+using ::basic_parser::str_helper::write;
+using ::basic_parser::str_helper::write_t;
+
+// objects
 
 std::ostream & write( std::ostream & os, const TimePoint24 & l )
 {
@@ -55,24 +41,6 @@ std::ostream & write( std::ostream & os, const LocalTime & l )
             << std::setfill( '0' ) << std::setw( 2 ) << (unsigned)l.hh << ":"
             << std::setfill( '0' ) << std::setw( 2 ) << (unsigned)l.mm << ":"
             << std::setfill( '0' ) << std::setw( 2 ) << (unsigned)l.ss;
-
-    return os;
-}
-
-std::ostream & write( std::ostream & os, const TimeRange & l )
-{
-    os << l.from;
-    os << "-";
-    os << l.to;
-
-    return os;
-}
-
-std::ostream & write( std::ostream & os, const LocalTimeRange & l )
-{
-    write( os, l.from );
-    os << "-";
-    write( os, l.to );
 
     return os;
 }
@@ -121,6 +89,24 @@ std::string to_string_HHMM( const TimePoint24 & l )
     return os.str();
 }
 
+std::ostream & write( std::ostream & os, const TimeRange & l )
+{
+    os << l.from;
+    os << "-";
+    os << l.to;
+
+    return os;
+}
+
+std::ostream & write( std::ostream & os, const LocalTimeRange & l )
+{
+    write( os, l.from );
+    os << "-";
+    write( os, l.to );
+
+    return os;
+}
+
 std::ostream & write( std::ostream & os, const Date & l )
 {
     os << std::setfill( '0' );
@@ -136,6 +122,10 @@ std::ostream & write( std::ostream & os, const Email & l )
 
     return os;
 }
+
+// base messages
+
+// messages
 
 } // namespace str_helper
 
