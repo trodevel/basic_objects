@@ -5,7 +5,7 @@ namespace basic_objects;
 
 // includes
 require_once __DIR__.'/../basic_parser/dummy_creator.php';
-require_once 'object_initializer.php';
+require_once __DIR__.'/object_initializer.php';
 
 // objects
 
