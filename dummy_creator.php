@@ -13,8 +13,8 @@ function create_dummy__TimePoint24()
 {
     $res = new TimePoint24;
 
-    $res->hh = \basic_parser\create_dummy__int() % 24;
-    $res->mm = \basic_parser\create_dummy__int() % 60;
+    $res->hh = \basic_parser\create_dummy__int8() % 24;
+    $res->mm = \basic_parser\create_dummy__int8() % 60;
 
     return $res;
 }
@@ -34,12 +34,12 @@ function create_dummy__LocalTime()
 {
     $res = new LocalTime;
 
-    $res->year   = \basic_parser\create_dummy__int() % 24 + 2010;
-    $res->month  = \basic_parser\create_dummy__int() % 12 + 1;
-    $res->day    = \basic_parser\create_dummy__int() % 30 + 1;
-    $res->hh = \basic_parser\create_dummy__int() % 24;
-    $res->mm = \basic_parser\create_dummy__int() % 60;
-    $res->ss = \basic_parser\create_dummy__int() % 60;
+    $res->year   = \basic_parser\create_dummy__int32() % 24 + 2010;
+    $res->month  = \basic_parser\create_dummy__int8() % 12 + 1;
+    $res->day    = \basic_parser\create_dummy__int8() % 30 + 1;
+    $res->hh = \basic_parser\create_dummy__int8() % 24;
+    $res->mm = \basic_parser\create_dummy__int8() % 60;
+    $res->ss = \basic_parser\create_dummy__int8() % 60;
 
     return $res;
 }
@@ -64,8 +64,8 @@ function create_dummy__TimeRange()
 {
     $res = new TimeRange;
 
-    $res->from = \basic_parser\create_dummy__int() + 1500000000;
-    $res->to = \basic_parser\create_dummy__int() + 1500000000;
+    $res->from = \basic_parser\create_dummy__int32() + 1500000000;
+    $res->to = \basic_parser\create_dummy__int32() + 1500000000;
 
     return $res;
 }
@@ -85,9 +85,9 @@ function create_dummy__Date()
 {
     $res = new Date;
 
-    $res->year   = \basic_parser\create_dummy__int() % 24 + 2010;
-    $res->month  = \basic_parser\create_dummy__int() % 12 + 1;
-    $res->day    = \basic_parser\create_dummy__int() % 30 + 1;
+    $res->year   = \basic_parser\create_dummy__int32() % 24 + 2010;
+    $res->month  = \basic_parser\create_dummy__int8() % 12 + 1;
+    $res->day    = \basic_parser\create_dummy__int8() % 30 + 1;
 
     return $res;
 }
