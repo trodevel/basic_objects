@@ -1,28 +1,6 @@
-/*
-
-Validator.
-
-Copyright (C) 2018 Sergey Kolevatov
-
-This program is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
-
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with this program. If not, see <http://www.gnu.org/licenses/>.
-
-*/
-
-// $Revision: 13295 $ $Date:: 2020-06-19 #$ $Author: serge $
-
-
-#include "validator.h"          // self
+// includes
+#include "validator.h"
+#include "basic_parser/validator.h"
 
 #include "utils/regex_match.h"  // utils::regex_match()
 #include "basic_parser/malformed_request.h" // basic_parser::MalformedRequest
@@ -35,6 +13,78 @@ namespace basic_objects
 
 namespace validator
 {
+
+using ::basic_parser::validator::validate;
+using ::basic_parser::validator::validate_t;
+
+// enums
+
+bool validate( const std::string & prefix, const weekdays_e r )
+{
+    validate( prefix, static_cast<unsigned>( r ), true, true, static_cast<unsigned>( weekdays_e::MO ), true, true, static_cast<unsigned>( weekdays_e::SU ) );
+
+    return true;
+}
+
+bool validate( const std::string & prefix, const gender_e r )
+{
+    validate( prefix, static_cast<unsigned>( r ), true, true, static_cast<unsigned>( gender_e::UNDEF ), true, true, static_cast<unsigned>( gender_e::OTHER ) );
+
+    return true;
+}
+
+// objects
+
+bool validate( const std::string & prefix, const TimePoint24 & r )
+{
+    if( r.hh > 23 )
+        throw basic_parser::MalformedRequest( prefix + ".HH > 23" );
+
+    if( r.mm > 59 )
+        throw basic_parser::MalformedRequest( prefix + ".MM > 59" );
+
+    return true;
+}
+
+bool validate( const std::string & prefix, const TimeWindow & r )
+{
+    validate( prefix + ".FROM", r.from );
+    validate( prefix + ".TO", r.to );
+
+    return true;
+}
+
+bool validate( const std::string & prefix, const LocalTime & r )
+{
+    if( r.year == 0 )
+        throw basic_parser::MalformedRequest( prefix + ": year is 0" );
+
+    if( r.month == 0 )
+        throw basic_parser::MalformedRequest( prefix + ": month is 0" );
+
+    if( r.day == 0 )
+        throw basic_parser::MalformedRequest( prefix + ": day is 0" );
+
+    if( r.year > 9999 )
+        throw basic_parser::MalformedRequest( prefix + ": year > 9999" );
+
+    if( r.month > 12 )
+        throw basic_parser::MalformedRequest( prefix + ": month > 12" );
+
+    if( r.day > 31 )
+        throw basic_parser::MalformedRequest( prefix + ": day > 31" );
+
+    if( r.hh > 23 )
+        throw basic_parser::MalformedRequest( prefix + ": hh > 23" );
+
+    if( r.mm > 59 )
+        throw basic_parser::MalformedRequest( prefix + ": mm > 59" );
+
+    if( r.ss > 59 )
+        throw basic_parser::MalformedRequest( prefix + ": ss > 59" );
+
+    return true;
+}
 
 bool validate( const std::string & prefix, const Weekdays & r )
 {
@@ -86,57 +136,6 @@ bool validate( const std::string & prefix, const Date & r )
     return true;
 }
 
-bool validate( const std::string & prefix, const TimePoint24 & r )
-{
-    if( r.hh > 23 )
-        throw basic_parser::MalformedRequest( prefix + ".HH > 23" );
-
-    if( r.mm > 59 )
-        throw basic_parser::MalformedRequest( prefix + ".MM > 59" );
-
-    return true;
-}
-
-bool validate( const std::string & prefix, const TimeWindow & r )
-{
-    validate( prefix, r.from );
-    validate( prefix, r.to );
-
-    return true;
-}
-
-bool validate( const std::string & prefix, const LocalTime & r )
-{
-    if( r.year == 0 )
-        throw basic_parser::MalformedRequest( prefix + ": year is 0" );
-
-    if( r.month == 0 )
-        throw basic_parser::MalformedRequest( prefix + ": month is 0" );
-
-    if( r.day == 0 )
-        throw basic_parser::MalformedRequest( prefix + ": day is 0" );
-
-    if( r.year > 9999 )
-        throw basic_parser::MalformedRequest( prefix + ": year > 9999" );
-
-    if( r.month > 12 )
-        throw basic_parser::MalformedRequest( prefix + ": month > 12" );
-
-    if( r.day > 31 )
-        throw basic_parser::MalformedRequest( prefix + ": day > 31" );
-
-    if( r.hh > 23 )
-        throw basic_parser::MalformedRequest( prefix + ": hh > 23" );
-
-    if( r.mm > 59 )
-        throw basic_parser::MalformedRequest( prefix + ": mm > 59" );
-
-    if( r.ss > 59 )
-        throw basic_parser::MalformedRequest( prefix + ": ss > 59" );
-
-    return true;
-}
-
 bool validate( const std::string & prefix, const Email & r )
 {
     if( utils::regex_match( r.email, "^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9.\\-]+$" ) == false )
@@ -145,6 +144,11 @@ bool validate( const std::string & prefix, const Email & r )
     return true;
 }
 
+// base messages
+
+// messages
+
 } // namespace validator
 
-} // namespace basic_parser
+} // namespace basic_objects
+

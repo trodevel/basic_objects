@@ -13,6 +13,10 @@ namespace basic_objects
 namespace csv_helper
 {
 
+// enums
+std::ostream & write( std::ostream & os, const weekdays_e r );
+std::ostream & write( std::ostream & os, const gender_e r );
+
 // objects
 std::ostream & write( std::ostream & os, const TimePoint24 & r );
 std::ostream & write( std::ostream & os, const TimeWindow & r );
@@ -27,6 +31,9 @@ std::ostream & write( std::ostream & os, const Email & r );
 
 // messages
 
+// generic
+std::ostream & write( std::ostream & os, const basic_parser::Object & r );
+
 template<class T>
 std::string to_csv( const T & l )
 {
@@ -36,9 +43,6 @@ std::string to_csv( const T & l )
 
     return os.str();
 }
-
-// generic
-std::ostream & write( std::ostream & os, const basic_parser::Object & r );
 
 } // namespace csv_helper
 

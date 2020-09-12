@@ -9,6 +9,26 @@ require_once 'str_helper.php';
 
 // enums
 
+function to_html_header__weekdays_e( $r )
+{
+    return array( 'WEEKDAYS_E' );
+}
+
+function to_html__weekdays_e( $r )
+{
+    return to_string__weekdays_e( $r ) . " (" . $r . ")";
+}
+
+function to_html_header__gender_e( $r )
+{
+    return array( 'GENDER_E' );
+}
+
+function to_html__gender_e( $r )
+{
+    return to_string__gender_e( $r ) . " (" . $r . ")";
+}
+
 // objects
 
 function to_html__TimePoint24( & $r )

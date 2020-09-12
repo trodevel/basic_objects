@@ -5,7 +5,31 @@ namespace basic_objects;
 
 // includes
 require_once __DIR__.'/../basic_parser/dummy_creator.php';
-require_once __DIR__.'/object_initializer.php';
+require_once 'object_initializer.php';
+
+// enums
+
+function create_dummy__weekdays_e()
+{
+    $SIZE = 7;
+
+    $values = array( weekdays_e__MO, weekdays_e__TU, weekdays_e__WE, weekdays_e__TH, weekdays_e__FR, weekdays_e__SA, weekdays_e__SU,  );
+
+    $res = $values[ \basic_parser\create_dummy__int32() % $SIZE ];
+
+    return $res;
+}
+
+function create_dummy__gender_e()
+{
+    $SIZE = 4;
+
+    $values = array( gender_e__UNDEF, gender_e__MALE, gender_e__FEMALE, gender_e__OTHER,  );
+
+    $res = $values[ \basic_parser\create_dummy__int32() % $SIZE ];
+
+    return $res;
+}
 
 // objects
 

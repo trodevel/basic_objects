@@ -15,6 +15,55 @@ namespace str_helper
 using ::basic_parser::str_helper::write;
 using ::basic_parser::str_helper::write_t;
 
+// enums
+
+#define TUPLE_VAL_STR(_x_)  _x_,#_x_
+
+std::ostream & write( std::ostream & os, const weekdays_e r )
+{
+    typedef weekdays_e Type;
+    static const std::map< Type, std::string > m =
+    {
+        { Type:: TUPLE_VAL_STR( MO ) },
+        { Type:: TUPLE_VAL_STR( TU ) },
+        { Type:: TUPLE_VAL_STR( WE ) },
+        { Type:: TUPLE_VAL_STR( TH ) },
+        { Type:: TUPLE_VAL_STR( FR ) },
+        { Type:: TUPLE_VAL_STR( SA ) },
+        { Type:: TUPLE_VAL_STR( SU ) },
+    };
+
+    auto it = m.find( r );
+
+    static const std::string undef( "undef" );
+
+    if( it != m.end() )
+        return write( os, it->second );
+
+    return write( os, undef );
+}
+
+std::ostream & write( std::ostream & os, const gender_e r )
+{
+    typedef gender_e Type;
+    static const std::map< Type, std::string > m =
+    {
+        { Type:: TUPLE_VAL_STR( UNDEF ) },
+        { Type:: TUPLE_VAL_STR( MALE ) },
+        { Type:: TUPLE_VAL_STR( FEMALE ) },
+        { Type:: TUPLE_VAL_STR( OTHER ) },
+    };
+
+    auto it = m.find( r );
+
+    static const std::string undef( "undef" );
+
+    if( it != m.end() )
+        return write( os, it->second );
+
+    return write( os, undef );
+}
+
 // objects
 
 std::ostream & write( std::ostream & os, const TimePoint24 & l )

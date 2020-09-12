@@ -13,6 +13,27 @@
 namespace basic_objects
 {
 
+// Enum
+enum class weekdays_e
+{
+    MO                   = 1,
+    TU                   = 2,
+    WE                   = 4,
+    TH                   = 8,
+    FR                   = 16,
+    SA                   = 32,
+    SU                   = 64,
+};
+
+// Enum
+enum class gender_e
+{
+    UNDEF                = 0,
+    MALE                 = 1,
+    FEMALE               = 2,
+    OTHER                = 3,
+};
+
 // Object
 struct TimePoint24
 {

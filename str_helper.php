@@ -29,6 +29,24 @@ function to_string__weekdays_e( $r )
     return '?';
 }
 
+function to_string__gender_e( $r )
+{
+    $map = array
+    (
+        gender_e__UNDEF => 'UNDEF',
+        gender_e__MALE => 'MALE',
+        gender_e__FEMALE => 'FEMALE',
+        gender_e__OTHER => 'OTHER',
+    );
+
+    if( array_key_exists( $r, $map ) )
+    {
+        return $map[ $r ];
+    }
+
+    return '?';
+}
+
 // objects
 
 function to_string__TimePoint24( & $obj )
@@ -64,7 +82,7 @@ function to_string__TimeRange( $obj )
 
 function to_string__LocalTimeRange( $obj )
 {
-    return "from=" . to_string__LocalTime( $obj->from ) . " to=" . to_string__LocalTime( $obj->to );
+    return to_string__LocalTime( $obj->from ) . " - " . to_string__LocalTime( $obj->to );
 }
 
 function to_string__Date( & $obj )

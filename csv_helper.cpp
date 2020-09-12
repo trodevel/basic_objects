@@ -15,6 +15,22 @@ namespace csv_helper
 using ::basic_parser::csv_helper::write;
 using ::basic_parser::csv_helper::write_t;
 
+// enums
+
+std::ostream & write( std::ostream & os, const weekdays_e r )
+{
+    write( os, static_cast<unsigned>( r ) );
+
+    return os;
+}
+
+std::ostream & write( std::ostream & os, const gender_e r )
+{
+    write( os, static_cast<unsigned>( r ) );
+
+    return os;
+}
+
 // objects
 
 std::ostream & write( std::ostream & os, const TimePoint24 & r )

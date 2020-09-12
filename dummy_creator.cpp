@@ -1,4 +1,5 @@
 // includes
+#include "dummy_creator.h"
 #include "basic_parser/dummy_creator.h"
 #include "object_initializer.h"
 
@@ -12,6 +13,33 @@ using ::basic_parser::dummy::create__uint8;
 using ::basic_parser::dummy::create__uint32;
 using ::basic_parser::dummy::create__bool;
 using ::basic_parser::dummy::create__string;
+
+
+// enums
+
+weekdays_e create__weekdays_e()
+{
+    static const unsigned SIZE = 7;
+
+    static const weekdays_e values[SIZE] = { weekdays_e::MO, weekdays_e::TU, weekdays_e::WE, weekdays_e::TH, weekdays_e::FR, weekdays_e::SA, weekdays_e::SU,  };
+
+    auto res = values[ ::basic_parser::dummy::create__uint32() % SIZE ];
+
+    return res;
+}
+
+gender_e create__gender_e()
+{
+    static const unsigned SIZE = 4;
+
+    static const gender_e values[SIZE] = { gender_e::UNDEF, gender_e::MALE, gender_e::FEMALE, gender_e::OTHER,  };
+
+    auto res = values[ ::basic_parser::dummy::create__uint32() % SIZE ];
+
+    return res;
+}
+
+// objects
 
 TimePoint24 create__TimePoint24()
 {

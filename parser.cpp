@@ -18,6 +18,26 @@ namespace parser
 using ::basic_parser::parser::get_value_or_throw;
 using ::basic_parser::parser::get_value_or_throw_t;
 
+// enums
+
+void get_value_or_throw( weekdays_e * res, const std::string & key, const generic_request::Request & r )
+{
+    uint32_t res_i;
+
+    get_value_or_throw( & res_i, key, r );
+
+    * res = static_cast<weekdays_e>( res_i );
+}
+
+void get_value_or_throw( gender_e * res, const std::string & key, const generic_request::Request & r )
+{
+    uint32_t res_i;
+
+    get_value_or_throw( & res_i, key, r );
+
+    * res = static_cast<gender_e>( res_i );
+}
+
 // objects
 
 void get_value_or_throw( TimePoint24 * res, const std::string & prefix, const generic_request::Request & r )

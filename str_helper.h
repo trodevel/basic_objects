@@ -13,6 +13,10 @@ namespace basic_objects
 namespace str_helper
 {
 
+// enums
+std::ostream & write( std::ostream & os, const weekdays_e r );
+std::ostream & write( std::ostream & os, const gender_e r );
+
 // objects
 std::ostream & write( std::ostream & os, const TimePoint24 & r );
 std::ostream & write( std::ostream & os, const TimeWindow & r );

@@ -10,6 +10,11 @@ namespace basic_objects
 namespace dummy
 {
 
+// enums
+
+weekdays_e create__weekdays_e();
+gender_e create__gender_e();
+
 // objects
 
 TimePoint24 create__TimePoint24();

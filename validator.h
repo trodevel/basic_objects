@@ -1,27 +1,8 @@
-/*
+#ifndef APG_BASIC_OBJECTS__VALIDATOR_H
+#define APG_BASIC_OBJECTS__VALIDATOR_H
 
-Validator.
-
-Copyright (C) 2018 Sergey Kolevatov
-
-This program is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
-
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with this program. If not, see <http://www.gnu.org/licenses/>.
-
-*/
-
-// $Revision: 13029 $ $Date:: 2020-05-13 #$ $Author: serge $
-
-#include "protocol.h"      // Date...
+// includes
+#include "protocol.h"
 
 namespace basic_objects
 {
@@ -29,15 +10,26 @@ namespace basic_objects
 namespace validator
 {
 
+// enums
+bool validate( const std::string & prefix, const weekdays_e r );
+bool validate( const std::string & prefix, const gender_e r );
+
+// objects
+bool validate( const std::string & prefix, const TimePoint24 & r );
+bool validate( const std::string & prefix, const TimeWindow & r );
+bool validate( const std::string & prefix, const LocalTime & r );
 bool validate( const std::string & prefix, const Weekdays & r );
 bool validate( const std::string & prefix, const TimeRange & r );
 bool validate( const std::string & prefix, const LocalTimeRange & r );
 bool validate( const std::string & prefix, const Date & r );
-bool validate( const std::string & prefix, const LocalTime & r );
-bool validate( const std::string & prefix, const TimePoint24 & r );
-bool validate( const std::string & prefix, const TimeWindow & r );
 bool validate( const std::string & prefix, const Email & r );
+
+// base messages
+
+// messages
 
 } // namespace validator
 
 } // namespace basic_objects
+
+#endif // APG_BASIC_OBJECTS__VALIDATOR_H

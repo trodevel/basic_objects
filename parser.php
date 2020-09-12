@@ -6,6 +6,22 @@ namespace basic_objects;
 // includes
 require_once __DIR__.'/../basic_parser/parser.php';
 
+// enums
+
+function parse__weekdays_e( & $csv_arr, & $offset )
+{
+    $res = \basic_parser\parse__int( $csv_arr, $offset );
+
+    return $res;
+}
+
+function parse__gender_e( & $csv_arr, & $offset )
+{
+    $res = \basic_parser\parse__int( $csv_arr, $offset );
+
+    return $res;
+}
+
 // objects
 
 function parse__TimePoint24( & $csv_arr, & $offset )
@@ -97,13 +113,13 @@ function parse__Email( & $csv_arr, & $offset )
 
 // generic
 
-class Parser
+class Parser extends \basic_parser\Parser
 {
 
 protected static function parse_csv_array( $csv_arr )
 {
     if( sizeof( $csv_arr ) < 1 )
-        return self::create_parse_error();
+        return NULL;
 
     $handler_map = array(
         // messages
@@ -114,7 +130,7 @@ protected static function parse_csv_array( $csv_arr )
     if( array_key_exists( $type, $handler_map ) )
     {
         $func = '\\basic_objects\\' . $handler_map[ $type ];
-        return $func( $obj );
+        return $func( $csv_arr[0] );
     }
 
     return NULL;

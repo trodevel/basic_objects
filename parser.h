@@ -18,6 +18,11 @@ basic_parser::Object * to_forward_message( const generic_request::Request & r );
 
 request_type_e detect_request_type( const generic_request::Request & r );
 
+// enums
+
+void get_value_or_throw( weekdays_e * res, const std::string & key, const generic_request::Request & r );
+void get_value_or_throw( gender_e * res, const std::string & key, const generic_request::Request & r );
+
 // objects
 
 void get_value_or_throw( TimePoint24 * res, const std::string & key, const generic_request::Request & r );

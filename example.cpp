@@ -20,6 +20,23 @@ void validate( const T & o, const std::string & name )
     }
 }
 
+// enums
+
+void example_weekdays_e()
+{
+    auto obj = basic_objects::dummy::create__weekdays_e();
+
+    std::cout << "weekdays_e : STR : " << basic_objects::str_helper::to_string( obj ) << std::endl;
+}
+
+void example_gender_e()
+{
+    auto obj = basic_objects::dummy::create__gender_e();
+
+    std::cout << "gender_e : STR : " << basic_objects::str_helper::to_string( obj ) << std::endl;
+}
+
+
 // objects
 
 void example_TimePoint24()
@@ -88,6 +105,11 @@ int main( int argc, char ** argv )
     {
         std::srand( std::stoi( std::string( argv[1] ) ) );
     }
+
+    // enums
+
+    example_weekdays_e();
+    example_gender_e();
 
     // objects
 

@@ -6,6 +6,22 @@ namespace basic_objects;
 // includes
 require_once __DIR__.'/../basic_parser/request_encoder.php';
 
+// enums
+
+function to_generic_request__weekdays_e( $prefix, $r )
+{
+    $res = \basic_parser\to_generic_request__int( $prefix, $r );
+
+    return $res;
+}
+
+function to_generic_request__gender_e( $prefix, $r )
+{
+    $res = \basic_parser\to_generic_request__int( $prefix, $r );
+
+    return $res;
+}
+
 // objects
 
 function to_generic_request__TimePoint24( $prefix, & $r )
