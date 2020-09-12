@@ -18,7 +18,7 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
 
-# $Revision: 13292 $ $Date:: 2020-06-17 #$ $Author: serge $
+# $Revision: 13795 $ $Date:: 2020-09-13 #$ $Author: serge $
 
 ############################################################
 
@@ -95,3 +95,13 @@ obj Email
     string     email
 
 obj_end
+
+enum gender_e
+
+    UNDEF   = 0
+    MALE    = 1
+    FEMALE  = 2
+    OTHER   = 3
+
+enum_end
+
